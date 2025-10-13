@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Environment variables
+.env
+.env*.local
+.env.production
+.env.development
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+migrations/.tmp
+
+# Secrets and certificates
+*.pem
+*.key
+secrets/
+
+# OS
+Thumbs.db
+.cache
+
+# Sanity
+.sanity
+dist/
+
+# Logs
+logs/
+*.log
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo

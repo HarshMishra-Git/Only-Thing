@@ -1,0 +1,14 @@
+{
+  "name": "@only-thing/design-tokens",
+  "version": "1.0.0",
+  "description": "Design system tokens for Only Thing Health & Wellness",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

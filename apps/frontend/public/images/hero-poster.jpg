@@ -1,0 +1,10 @@
+PLACEHOLDER: Replace with actual hero poster image (1920x1080, grayscale, high quality JPG)
+
+This file is a placeholder. The design team should replace it with the actual hero video poster frame.
+
+Specifications:
+- Resolution: 1920x1080px (16:9 aspect ratio)
+- Format: JPG, optimized for web (<500KB)
+- Color: Grayscale (black/white/gray tones only)
+- Content: Frame from hero video that works as standalone image
+- Use case: Fallback for mobile devices and slow network connections
