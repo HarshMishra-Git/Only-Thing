@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import styled from '@emotion/styled';
 import { theme } from '@/lib/theme';
@@ -61,7 +61,7 @@ const ErrorMessage = styled.div`
   max-width: 500px;
 `;
 
-export default function GoogleCallbackPage() {
+function GoogleCallbackContent() {
   const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(null);
 
@@ -123,6 +123,22 @@ export default function GoogleCallbackPage() {
         </>
       )}
     </Container>
+  );
+}
+
+export default function GoogleCallbackPage() {
+  return (
+    <Suspense fallback={
+      <Container>
+        <Logo>
+          <img src="/images/logo/ot-logo-white.png" alt="Only Thing" />
+        </Logo>
+        <Message>Authenticating...</Message>
+        <Spinner />
+      </Container>
+    }>
+      <GoogleCallbackContent />
+    </Suspense>
   );
 }
 

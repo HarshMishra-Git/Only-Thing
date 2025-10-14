@@ -2,7 +2,7 @@
 
 import styled from '@emotion/styled';
 import { theme } from '@/lib/theme';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/common/Header';
@@ -231,7 +231,7 @@ const SignupLink = styled.div`
   }
 `;
 
-export default function LoginPage() {
+function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -341,6 +341,26 @@ export default function LoginPage() {
       </PageContainer>
       <Footer />
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <>
+        <Header />
+        <PageContainer>
+          <FormSection>
+            <FormCard>
+              <Title>Loading...</Title>
+            </FormCard>
+          </FormSection>
+        </PageContainer>
+        <Footer />
+      </>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }
 
