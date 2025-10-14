@@ -2,7 +2,7 @@
 
 import { use } from 'react';
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 import Link from 'next/link';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
