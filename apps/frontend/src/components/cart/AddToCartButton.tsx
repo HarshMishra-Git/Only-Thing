@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 import { useState } from 'react';
 import { useCartStore } from '@/store/cartStore';
 import { useAuth } from '@/contexts/AuthContext';
@@ -108,3 +108,4 @@ export function AddToCartButton({ product, quantity = 1, fullWidth }: AddToCartB
     </Button>
   );
 }
+

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 const CounterText = styled(motion.span)`
   font-family: ${theme.typography.fonts.display};
@@ -61,3 +61,4 @@ export function AnimatedCounter({ end, duration = 2, suffix = '', prefix = '' }:
     </CounterText>
   );
 }
+

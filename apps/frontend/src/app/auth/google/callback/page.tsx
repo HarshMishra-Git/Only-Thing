@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 const Container = styled.div`
   display: flex;
@@ -125,3 +125,4 @@ export default function GoogleCallbackPage() {
     </Container>
   );
 }
+

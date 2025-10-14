@@ -197,3 +197,4 @@ function generateBlurDataURL(): string {
 }
 
 export default OptimizedImage;
+

@@ -15,7 +15,7 @@ import { quizRoutes } from './routes/quiz';
 import { reviewRoutes } from './routes/reviews';
 // import { sanityRoutes } from './routes/sanity.routes'; // Temporarily disabled - Sanity not configured yet
 import { adminRoutes } from './routes/admin.routes';
-import { monitoringRoutes } from './routes/monitoring.routes';
+// import { monitoringRoutes } from './routes/monitoring.routes'; // Disabled - has dependencies on excluded files
 
 const server = Fastify({
   logger: {
@@ -73,7 +73,7 @@ async function registerRoutes() {
   await server.register(reviewRoutes, { prefix: '/api/reviews' });
   // await server.register(sanityRoutes, { prefix: '/api/sanity' }); // Temporarily disabled - Sanity not configured yet
   await server.register(adminRoutes, { prefix: '/api/admin' });
-  await server.register(monitoringRoutes, { prefix: '/api/monitoring' });
+  // await server.register(monitoringRoutes, { prefix: '/api/monitoring' }); // Disabled - has dependencies on excluded files
 
   // 404 handler
   server.setNotFoundHandler((request, reply) => {

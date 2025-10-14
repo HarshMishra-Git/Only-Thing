@@ -26,19 +26,12 @@ export class OptimizedProductQueries {
             price: true,
             compareAtPrice: true,
             sku: true,
-            stock: true,
-            images: true,
+            inStock: true,
+            stockQuantity: true,
             isActive: true,
             createdAt: true,
             updatedAt: true,
             ...(includeRelations && {
-              category: {
-                select: {
-                  id: true,
-                  name: true,
-                  slug: true,
-                },
-              },
               reviews: {
                 select: {
                   id: true,
@@ -48,7 +41,9 @@ export class OptimizedProductQueries {
                   user: {
                     select: {
                       id: true,
-                      name: true,
+                      email: true,
+                      firstName: true,
+                      lastName: true,
                     },
                   },
                 },
@@ -90,7 +85,7 @@ export class OptimizedProductQueries {
 
     const where: Prisma.ProductWhereInput = {
       isActive: true,
-      ...(categoryId && { categoryId }),
+      ...(categoryId && { category: categoryId }),
     };
 
     // Use cursor-based pagination for better performance
@@ -102,20 +97,10 @@ export class OptimizedProductQueries {
         slug: true,
         price: true,
         compareAtPrice: true,
-        images: true,
-        stock: true,
-        category: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-          },
-        },
-        _count: {
-          select: {
-            reviews: true,
-          },
-        },
+        inStock: true,
+        stockQuantity: true,
+        rating: true,
+        reviewCount: true,
       },
       orderBy: { [sortBy]: sortOrder },
       skip,
@@ -179,8 +164,8 @@ export class OptimizedProductQueries {
             name: true,
             slug: true,
             price: true,
-            images: true,
-            stock: true,
+            inStock: true,
+            stockQuantity: true,
           },
           skip,
           take: limit,
@@ -229,7 +214,7 @@ export class OptimizedOrderQueries {
               select: {
                 id: true,
                 name: true,
-                images: true,
+                slug: true,
               },
             },
           },
@@ -264,8 +249,9 @@ export class OptimizedOrderQueries {
             user: {
               select: {
                 id: true,
-                name: true,
                 email: true,
+                firstName: true,
+                lastName: true,
               },
             },
             items: {
@@ -277,7 +263,7 @@ export class OptimizedOrderQueries {
                   select: {
                     id: true,
                     name: true,
-                    images: true,
+                    slug: true,
                     sku: true,
                   },
                 },
@@ -313,7 +299,7 @@ export class OptimizedStatsQueries {
         ] = await Promise.all([
           prisma.order.aggregate({
             _sum: { total: true },
-            where: { status: { in: ['COMPLETED', 'SHIPPED'] } },
+            where: { status: { in: ['DELIVERED', 'SHIPPED'] } },
           }),
           prisma.order.count(),
           prisma.user.count({ where: { role: 'CUSTOMER' } }),
@@ -357,7 +343,7 @@ export class OptimizedStatsQueries {
             id: true,
             name: true,
             price: true,
-            images: true,
+            slug: true,
           },
         });
 

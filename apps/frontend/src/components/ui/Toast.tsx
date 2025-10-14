@@ -1,7 +1,7 @@
 'use client';
 
 import { Toaster } from 'react-hot-toast';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 export function ToastProvider() {
   return (
@@ -34,3 +34,4 @@ export function ToastProvider() {
     />
   );
 }
+

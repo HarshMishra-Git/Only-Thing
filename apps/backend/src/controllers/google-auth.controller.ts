@@ -113,8 +113,9 @@ export class GoogleAuthController {
       // Generate JWT tokens
       const jwtTokens = JWTUtils.generateTokens(request.server, {
         userId: user.id,
+        id: user.id,
         email: user.email,
-        role: user.role,
+        role: user.role as string,
       });
 
       // Get the frontend URL from environment or use default

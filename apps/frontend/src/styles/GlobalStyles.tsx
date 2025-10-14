@@ -1,7 +1,7 @@
 'use client';
 
 import { Global, css } from '@emotion/react';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 export function GlobalStyles() {
   return (
@@ -143,3 +143,4 @@ export function GlobalStyles() {
     />
   );
 }
+

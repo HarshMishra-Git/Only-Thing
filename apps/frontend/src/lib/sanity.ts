@@ -238,3 +238,4 @@ export async function fetchSanityData<T = any>(
 }
 
 export default sanityClient;
+

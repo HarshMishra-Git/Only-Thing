@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 import Link from 'next/link';
 
 interface HeroVideoProps {
@@ -286,3 +286,4 @@ export function HeroVideo({
     </HeroContainer>
   );
 }
+

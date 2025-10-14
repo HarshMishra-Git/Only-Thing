@@ -33,6 +33,7 @@ export class AuthController {
       // Generate tokens
       const tokens = JWTUtils.generateTokens(request.server, {
         userId: user.id,
+        id: user.id,
         email: user.email,
         role: user.role,
       });
@@ -78,6 +79,7 @@ export class AuthController {
       // Generate tokens
       const tokens = JWTUtils.generateTokens(request.server, {
         userId: user.id,
+        id: user.id,
         email: user.email,
         role: user.role,
       });

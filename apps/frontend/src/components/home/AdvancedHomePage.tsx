@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -1265,3 +1265,4 @@ export function AdvancedHomePage() {
     </PageContainer>
   );
 }
+

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCartStore } from '@/store/cartStore';
@@ -267,3 +267,4 @@ export function Header() {
     </HeaderContainer>
   );
 }
+

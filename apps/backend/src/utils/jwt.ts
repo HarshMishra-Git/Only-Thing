@@ -3,6 +3,7 @@ import { config } from '../config/env';
 
 export interface JWTPayload {
   userId: string;
+  id: string;  // Alias for userId
   email: string;
   role: string;
 }
@@ -15,12 +16,19 @@ export interface TokenResponse {
 
 export class JWTUtils {
   static generateTokens(fastify: FastifyInstance, payload: JWTPayload): TokenResponse {
-    const accessToken = fastify.jwt.sign(payload, {
+    // Ensure both id and userId are present
+    const tokenPayload = {
+      ...payload,
+      id: payload.userId || payload.id,
+      userId: payload.userId || payload.id,
+    };
+
+    const accessToken = fastify.jwt.sign(tokenPayload, {
       expiresIn: config.jwt.expiresIn,
     });
 
     const refreshToken = fastify.jwt.sign(
-      { ...payload, type: 'refresh' },
+      tokenPayload as any,
       { expiresIn: '30d' }
     );
 
@@ -56,7 +64,8 @@ export class JWTUtils {
       }
 
       const payload: JWTPayload = {
-        userId: decoded.userId,
+        userId: decoded.userId || decoded.id,
+        id: decoded.userId || decoded.id,
         email: decoded.email,
         role: decoded.role,
       };

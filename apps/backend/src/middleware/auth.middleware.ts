@@ -2,10 +2,11 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 import { JWTUtils, JWTPayload } from '../utils/jwt';
 import { authService } from '../services/auth.service';
 
-// Extend FastifyRequest to include user
-declare module 'fastify' {
-  interface FastifyRequest {
-    user?: JWTPayload;
+// Extend @fastify/jwt types to match our JWTPayload
+declare module '@fastify/jwt' {
+  interface FastifyJWT {
+    payload: JWTPayload;
+    user: JWTPayload;
   }
 }
 
@@ -86,3 +87,6 @@ export function requireRole(role: string) {
     }
   };
 }
+
+// Export authenticate as an alias for authMiddleware
+export const authenticate = authMiddleware;

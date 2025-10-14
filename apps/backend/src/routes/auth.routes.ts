@@ -25,13 +25,13 @@ export async function authRoutes(fastify: FastifyInstance) {
   fastify.get('/google/callback', googleAuthController.handleGoogleCallback.bind(googleAuthController));
 
   // Refresh token
-  fastify.post('/refresh', authController.refreshToken.bind(authController));
+  fastify.post('/refresh', authController.refresh.bind(authController));
 
   // Get current user
   fastify.get(
     '/me',
     { preHandler: [authenticate] },
-    authController.getCurrentUser.bind(authController)
+    authController.me.bind(authController)
   );
 
   // Request password reset

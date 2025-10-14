@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { motion, AnimatePresence } from 'framer-motion';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 const AccordionContainer = styled.div`
   width: 100%;
@@ -130,3 +130,4 @@ export function Accordion({ items, allowMultiple = false }: AccordionProps) {
     </AccordionContainer>
   );
 }
+

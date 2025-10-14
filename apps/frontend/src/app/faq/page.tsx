@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { ContentPage } from '@/components/common/ContentPage';
@@ -226,3 +226,4 @@ export default function FAQPage() {
     </>
   );
 }
+

@@ -443,3 +443,4 @@ export const quizConfig = {
   allowBack: true,
   saveProgress: true,
 };
+

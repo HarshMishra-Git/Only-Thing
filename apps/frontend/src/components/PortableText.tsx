@@ -2,7 +2,7 @@ import React from 'react';
 import { PortableText as BasePortableText } from '@portabletext/react';
 import { urlFor } from '../lib/sanity';
 import styled from '@emotion/styled';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 const ContentContainer = styled.div`
   font-size: 1.125rem;
@@ -228,3 +228,4 @@ export const PortableTextContent: React.FC<PortableTextProps> = ({ value }) => {
 };
 
 export default PortableTextContent;
+

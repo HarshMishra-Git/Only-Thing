@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 const Container = styled.div`
   position: relative;
@@ -162,3 +162,4 @@ export function BeforeAfterSlider({
     </Container>
   );
 }
+

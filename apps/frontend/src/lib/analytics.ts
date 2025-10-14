@@ -211,3 +211,4 @@ if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) 
 }
 
 export default analytics;
+

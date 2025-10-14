@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { motion, AnimatePresence } from 'framer-motion';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 const BackToTopButton = styled(motion.button)`
   position: fixed;
@@ -121,3 +121,4 @@ export function BackToTop() {
     </AnimatePresence>
   );
 }
+

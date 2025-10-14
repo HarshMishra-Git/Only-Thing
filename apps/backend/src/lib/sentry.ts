@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/node';
-import { ProfilingIntegration } from '@sentry/profiling-node';
+import { nodeProfilingIntegration } from '@sentry/profiling-node';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 /**
@@ -23,7 +23,7 @@ export function initSentry() {
     profilesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
 
     integrations: [
-      new ProfilingIntegration(),
+      nodeProfilingIntegration(),
     ],
 
     // Filter sensitive data
@@ -101,33 +101,33 @@ export function addBreadcrumb(breadcrumb: Sentry.Breadcrumb) {
  * Fastify plugin to add Sentry context to requests
  */
 export function addSentryContext(request: FastifyRequest, reply: FastifyReply) {
-  const transaction = Sentry.startTransaction({
-    op: 'http.server',
-    name: `${request.method} ${request.url}`,
-  });
+  // Use newer span API instead of deprecated startTransaction
+  Sentry.startSpan(
+    {
+      op: 'http.server',
+      name: `${request.method} ${request.url}`,
+    },
+    (span) => {
+      // Set context
+      Sentry.setContext('request', {
+        method: request.method,
+        url: request.url,
+        query: request.query,
+        params: request.params,
+      });
 
-  // Set context
-  Sentry.setContext('request', {
-    method: request.method,
-    url: request.url,
-    query: request.query,
-    params: request.params,
-  });
+      // Set user context if authenticated
+      if (request.user) {
+        setUser({
+          id: request.user.id,
+          email: request.user.email,
+          role: request.user.role,
+        });
+      }
 
-  // Set user context if authenticated
-  if (request.user) {
-    setUser({
-      id: request.user.id,
-      email: request.user.email,
-      role: request.user.role,
-    });
-  }
-
-  // Finish transaction on response
-  reply.addHook('onSend', async () => {
-    transaction.setHttpStatus(reply.statusCode);
-    transaction.finish();
-  });
+      // Note: span is automatically finished when callback completes
+    }
+  );
 }
 
 /**

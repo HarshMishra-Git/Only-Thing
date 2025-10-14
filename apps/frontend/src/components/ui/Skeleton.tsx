@@ -2,7 +2,7 @@
 
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
-import { theme } from '@only-thing/design-tokens';
+import { theme } from '@/lib/theme';
 
 const shimmer = keyframes`
   0% {
@@ -68,3 +68,4 @@ export function ProductGridSkeleton({ count = 4 }: { count?: number }) {
     </>
   );
 }
+
