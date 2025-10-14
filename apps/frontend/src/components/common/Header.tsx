@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 import { theme } from '@only-thing/design-tokens';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useCartStore } from '@/store/cartStore';
+import { useAuth } from '@/contexts/AuthContext';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -18,9 +20,8 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderInner = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: ${theme.spacing[2]} ${theme.spacing[3]};
+  width: 100%;
+  padding: ${theme.spacing[1]} ${theme.spacing[6]};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,12 +49,17 @@ const Logo = styled(Link)`
 `;
 
 const LogoImage = styled.div`
-  width: 40px;
-  height: 40px;
+  height: 80px;
   position: relative;
   
   img {
-    filter: grayscale(100%);
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    height: 60px;
   }
 `;
 
@@ -185,20 +191,17 @@ const MenuLine = styled.span<{ isOpen: boolean }>`
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [cartItemCount] = useState(0); // Will be connected to cart state later
+  const { totalItems } = useCartStore();
+  const { isAuthenticated, user } = useAuth();
+  const cartItemCount = totalItems();
 
   return (
     <HeaderContainer>
       <HeaderInner>
         <Logo href="/" aria-label="Only Thing Health & Wellness - Home">
           <LogoImage>
-            {/* Logo will be added here - for now showing text */}
-            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" stroke="black" strokeWidth="3"/>
-              <text x="50" y="65" fontSize="50" fontWeight="900" textAnchor="middle" fill="black">O</text>
-            </svg>
+            <img src="/images/logo/ot-logo.jpg" alt="Only Thing" />
           </LogoImage>
-          <span>Only Thing</span>
         </Logo>
 
         <Nav isOpen={mobileMenuOpen}>
@@ -230,14 +233,17 @@ export function Header() {
             </svg>
           </IconButton>
           
-          <IconButton aria-label="Account">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-          </IconButton>
+          <Link href={isAuthenticated ? "/account" : "/login"} aria-label={isAuthenticated ? "My Account" : "Login"}>
+            <IconButton as="span">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </IconButton>
+          </Link>
           
-          <IconButton as={Link} href="/cart" aria-label={`Cart with ${cartItemCount} items`}>
+          <Link href="/cart" aria-label={`Cart with ${cartItemCount} items`}>
+          <IconButton as="span">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="9" cy="21" r="1"/>
               <circle cx="20" cy="21" r="1"/>
@@ -245,6 +251,7 @@ export function Header() {
             </svg>
             {cartItemCount > 0 && <CartBadge>{cartItemCount}</CartBadge>}
           </IconButton>
+          </Link>
 
           <MobileMenuButton 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

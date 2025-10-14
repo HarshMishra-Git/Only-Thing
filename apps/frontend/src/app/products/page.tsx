@@ -4,6 +4,8 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import { theme } from '@only-thing/design-tokens';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { mockProducts, formatPrice } from '@/lib/mockData';
@@ -35,15 +37,21 @@ const PageDescription = styled.p`
 `;
 
 const ContentContainer = styled.div`
-  max-width: 1440px;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: ${theme.spacing[6]} ${theme.spacing[3]};
+  padding: ${theme.spacing[6]} ${theme.spacing[4]};
   display: grid;
   grid-template-columns: 250px 1fr;
-  gap: ${theme.spacing[4]};
+  gap: ${theme.spacing[6]};
+
+  @media (max-width: ${theme.breakpoints.xl}) {
+    max-width: 1440px;
+  }
 
   @media (max-width: ${theme.breakpoints.lg}) {
     grid-template-columns: 1fr;
+    max-width: 1200px;
+    padding: ${theme.spacing[6]} ${theme.spacing[3]};
   }
 `;
 
@@ -92,17 +100,22 @@ const ProductsGrid = styled.div`
   gap: ${theme.spacing[4]};
 `;
 
+const MotionProductsGrid = motion(ProductsGrid);
+
 const ProductCard = styled(Link)`
   display: flex;
   flex-direction: column;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
   border: 1px solid ${theme.colors.gray.light};
   padding: ${theme.spacing[3]};
-  transition: all ${theme.transitions.duration.base} ${theme.transitions.easing.out};
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
   
   &:hover {
     border-color: ${theme.colors.black};
-    transform: translateY(-4px);
-    box-shadow: ${theme.shadows.md};
+    transform: translateY(-8px) rotateX(2deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 0 20px rgba(191, 166, 106, 0.1);
   }
 `;
 
@@ -167,8 +180,28 @@ const ResultsCount = styled.p`
   color: ${theme.colors.gray.dark};
 `;
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
   
   const categories = [
     { id: 'all', name: 'All Products' },
@@ -214,22 +247,29 @@ export default function ProductsPage() {
               {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
             </ResultsCount>
             
-            <ProductsGrid>
+            <MotionProductsGrid
+              ref={ref}
+              variants={containerVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+            >
               {filteredProducts.map(product => (
-                <ProductCard key={product.id} href={`/products/${product.slug}`}>
-                  <ProductImage>📦</ProductImage>
-                  <ProductCategory>{product.category}</ProductCategory>
-                  <ProductTitle>{product.name}</ProductTitle>
-                  <ProductShortDesc>{product.shortDescription}</ProductShortDesc>
-                  <ProductFooter>
-                    <ProductPrice>{formatPrice(product.price, product.currency)}</ProductPrice>
-                    <ProductRating>
-                      ⭐ {product.rating} ({product.reviewCount})
-                    </ProductRating>
-                  </ProductFooter>
-                </ProductCard>
+                <motion.div key={product.id} variants={itemVariants}>
+                  <ProductCard href={`/products/${product.slug}`}>
+                    <ProductImage>📦</ProductImage>
+                    <ProductCategory>{product.category}</ProductCategory>
+                    <ProductTitle>{product.name}</ProductTitle>
+                    <ProductShortDesc>{product.shortDescription}</ProductShortDesc>
+                    <ProductFooter>
+                      <ProductPrice>{formatPrice(product.price, product.currency)}</ProductPrice>
+                      <ProductRating>
+                        ⭐ {product.rating} ({product.reviewCount})
+                      </ProductRating>
+                    </ProductFooter>
+                  </ProductCard>
+                </motion.div>
               ))}
-            </ProductsGrid>
+            </MotionProductsGrid>
           </div>
         </ContentContainer>
       </PageContainer>

@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 interface HeroVideoProps {
   videoSrc: string;
+  mobileVideoSrc?: string;
   posterSrc: string;
   title?: string;
   subtitle?: string;
@@ -40,8 +41,16 @@ const VideoElement = styled.video`
   object-fit: cover;
   z-index: ${theme.zIndex.base};
   filter: grayscale(100%);
-  
+`;
+
+const DesktopVideo = styled(VideoElement)`
   @media (max-width: ${theme.breakpoints.md}) {
+    display: none;
+  }
+`;
+
+const MobileVideo = styled(VideoElement)`
+  @media (min-width: ${theme.breakpoints.md}) {
     display: none;
   }
 `;
@@ -81,6 +90,11 @@ const ContentContainer = styled.div`
   padding: ${theme.spacing[4]};
   max-width: 900px;
   margin: 0 auto;
+  margin-top: 20vh;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    margin-top: 15vh;
+  }
 `;
 
 const Title = styled.h1`
@@ -173,37 +187,52 @@ const SecondaryButton = styled(Link)`
 
 export function HeroVideo({ 
   videoSrc, 
+  mobileVideoSrc,
   posterSrc, 
   title = 'The Future of Skincare is Intelligent',
   subtitle
 }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const mobileVideo = mobileVideoRef.current;
 
-    const handleCanPlay = () => {
+    const handleCanPlay = (videoElement: HTMLVideoElement) => {
       setIsVideoLoaded(true);
-      video.play().catch(err => {
+      videoElement.play().catch(err => {
         console.warn('Video autoplay failed:', err);
       });
     };
 
-    video.addEventListener('canplay', handleCanPlay);
+    if (video) {
+      const desktopHandler = () => handleCanPlay(video);
+      video.addEventListener('canplay', desktopHandler);
+    }
+
+    if (mobileVideo && mobileVideoSrc) {
+      const mobileHandler = () => handleCanPlay(mobileVideo);
+      mobileVideo.addEventListener('canplay', mobileHandler);
+    }
     
     return () => {
-      video.removeEventListener('canplay', handleCanPlay);
+      if (video) {
+        video.removeEventListener('canplay', () => handleCanPlay(video));
+      }
+      if (mobileVideo) {
+        mobileVideo.removeEventListener('canplay', () => handleCanPlay(mobileVideo));
+      }
     };
-  }, []);
+  }, [mobileVideoSrc]);
 
   return (
     <HeroContainer>
       {/* Video for desktop */}
-      <VideoElement
+      <DesktopVideo
         ref={videoRef}
-        poster={posterSrc}
+        autoPlay
         muted
         loop
         playsInline
@@ -212,14 +241,30 @@ export function HeroVideo({
       >
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
-      </VideoElement>
+      </DesktopVideo>
       
-      {/* Poster image fallback for mobile */}
-      <PosterImage 
-        src={posterSrc} 
-        alt="Hero background" 
-        loading="eager"
-      />
+      {/* Video for mobile */}
+      {mobileVideoSrc ? (
+        <MobileVideo
+          ref={mobileVideoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label="Hero background video mobile"
+        >
+          <source src={mobileVideoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </MobileVideo>
+      ) : (
+        /* Poster image fallback if no mobile video provided */
+        <PosterImage 
+          src={posterSrc} 
+          alt="Hero background" 
+          loading="eager"
+        />
+      )}
       
       {/* Dark overlay for better text contrast */}
       <Overlay />

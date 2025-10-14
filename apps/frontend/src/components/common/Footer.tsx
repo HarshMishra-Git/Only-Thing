@@ -8,7 +8,8 @@ import { useState } from 'react';
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.black};
   color: ${theme.colors.white};
-  padding: ${theme.spacing[6]} ${theme.spacing[3]} ${theme.spacing[3]};
+  padding: ${theme.spacing[6]} ${theme.spacing[3]} ${theme.spacing[2]};
+  border-top: 1px solid ${theme.colors.gray.dark};
 `;
 
 const FooterInner = styled.div`
@@ -19,8 +20,8 @@ const FooterInner = styled.div`
 const FooterGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: ${theme.spacing[4]};
-  margin-bottom: ${theme.spacing[6]};
+  gap: ${theme.spacing[3]};
+  margin-bottom: ${theme.spacing[4]};
 
   @media (max-width: ${theme.breakpoints.lg}) {
     grid-template-columns: repeat(2, 1fr);
@@ -37,7 +38,7 @@ const ColumnTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
   font-size: ${theme.typography.sizes.lg};
   font-weight: ${theme.typography.weights.black};
-  margin-bottom: ${theme.spacing[2]};
+  margin-bottom: ${theme.spacing[1]};
   text-transform: uppercase;
   letter-spacing: ${theme.typography.letterSpacing.wide};
 `;
@@ -45,9 +46,10 @@ const ColumnTitle = styled.h3`
 const FooterLink = styled(Link)`
   display: block;
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.base};
+  font-size: ${theme.typography.sizes.sm};
   color: ${theme.colors.gray.medium};
-  margin-bottom: ${theme.spacing[1]};
+  margin-bottom: ${theme.spacing[0]};
+  line-height: 1.8;
   transition: color ${theme.transitions.duration.fast} ${theme.transitions.easing.out};
   
   &:hover {
@@ -58,7 +60,7 @@ const FooterLink = styled(Link)`
 const NewsletterForm = styled.form`
   display: flex;
   gap: ${theme.spacing[1]};
-  margin-top: ${theme.spacing[2]};
+  margin-top: ${theme.spacing[1]};
 `;
 
 const NewsletterInput = styled.input`
@@ -100,7 +102,7 @@ const NewsletterButton = styled.button`
 `;
 
 const FooterBottom = styled.div`
-  padding-top: ${theme.spacing[3]};
+  padding-top: ${theme.spacing[2]};
   border-top: 1px solid ${theme.colors.gray.dark};
   display: flex;
   justify-content: space-between;
@@ -151,6 +153,34 @@ export function Footer() {
       <FooterInner>
         <FooterGrid>
           <FooterColumn>
+            <ColumnTitle>Only Thing</ColumnTitle>
+            <h3 style={{ 
+              fontSize: theme.typography.sizes.lg, 
+              color: theme.colors.white,
+              fontFamily: theme.typography.fonts.display,
+              fontWeight: theme.typography.weights.bold,
+              letterSpacing: theme.typography.letterSpacing.wide,
+              textTransform: 'uppercase',
+              marginBottom: theme.spacing[2]
+            }}>
+              ONLY THING
+            </h3>
+            <p style={{ fontSize: theme.typography.sizes.sm, color: theme.colors.gray.medium, marginBottom: theme.spacing[2], lineHeight: '1.5' }}>
+              Only Thing Health & Wellness LLP delivers clinical-grade skincare backed by science. 
+              Our formulations combine dermatological expertise with cutting-edge biochemistry for 
+              measurable, intelligent results.
+            </p>
+            <div style={{ 
+              marginTop: theme.spacing[1], 
+              backgroundColor: theme.colors.white, 
+              padding: theme.spacing[1], 
+              display: 'inline-block',
+              borderRadius: '4px'
+            }}>
+              <img src="/images/logo/ot-logo.jpg" alt="Only Thing" style={{ height: '50px', width: 'auto', display: 'block' }} />
+            </div>
+          </FooterColumn>
+          <FooterColumn>
             <ColumnTitle>Shop</ColumnTitle>
             <FooterLink href="/products">All Products</FooterLink>
             <FooterLink href="/products?category=serums">Serums</FooterLink>
@@ -179,7 +209,7 @@ export function Footer() {
 
           <FooterColumn>
             <ColumnTitle>Newsletter</ColumnTitle>
-            <p style={{ fontSize: theme.typography.sizes.sm, color: theme.colors.gray.medium, marginBottom: theme.spacing[2] }}>
+            <p style={{ fontSize: theme.typography.sizes.sm, color: theme.colors.gray.medium, marginBottom: theme.spacing[1], lineHeight: '1.5' }}>
               Get updates on new products and exclusive offers.
             </p>
             <NewsletterForm onSubmit={handleNewsletterSubmit}>
@@ -204,10 +234,10 @@ export function Footer() {
           </Copyright>
           
           <div style={{ display: 'flex', gap: theme.spacing[2], flexWrap: 'wrap' }}>
-            <FooterLink href="/privacy" style={{ fontSize: theme.typography.sizes.sm }}>
+            <FooterLink href="/privacy-policy" style={{ fontSize: theme.typography.sizes.sm }}>
               Privacy Policy
             </FooterLink>
-            <FooterLink href="/terms" style={{ fontSize: theme.typography.sizes.sm }}>
+            <FooterLink href="/terms-of-service" style={{ fontSize: theme.typography.sizes.sm }}>
               Terms of Service
             </FooterLink>
           </div>

@@ -10,24 +10,27 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "next": "^14.0.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@only-thing/design-tokens": "*",
-    "@sanity/client": "^6.10.0",
-    "@sanity/image-url": "^1.0.2",
+    "@portabletext/react": "^4.0.3",
+    "@sanity/client": "^6.29.1",
+    "@sanity/image-url": "^1.2.0",
+    "@stripe/stripe-js": "^8.0.0",
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "stripe": "^14.9.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "@types/uuid": "^9.0.7",
-    "typescript": "^5.3.3",
     "eslint": "^9.15.0",
-    "eslint-config-next": "^14.0.4"
+    "eslint-config-next": "^14.0.4",
+    "typescript": "^5.3.3"
   }
 }

@@ -66,13 +66,23 @@ async function buildServer() {
     };
   });
 
-  // API routes will be registered here
-  // await server.register(authRoutes, { prefix: '/api/auth' });
-  // await server.register(productRoutes, { prefix: '/api/products' });
-  // await server.register(cartRoutes, { prefix: '/api/cart' });
-  // await server.register(orderRoutes, { prefix: '/api/orders' });
-  // await server.register(quizRoutes, { prefix: '/api/quiz' });
-  // await server.register(reviewRoutes, { prefix: '/api/reviews' });
+  // Import routes
+  const { authRoutes } = await import('./routes/auth.routes');
+  const { userRoutes } = await import('./routes/user.routes');
+  const { productRoutes } = await import('./routes/product.routes');
+  const { cartRoutes } = await import('./routes/cart.routes');
+  const { orderRoutes } = await import('./routes/order.routes');
+  const { quizRoutes } = await import('./routes/quiz.routes');
+  const { reviewRoutes } = await import('./routes/review.routes');
+
+  // Register API routes
+  await server.register(authRoutes, { prefix: '/api/auth' });
+  await server.register(userRoutes, { prefix: '/api/users' });
+  await server.register(productRoutes, { prefix: '/api/products' });
+  await server.register(cartRoutes, { prefix: '/api/cart' });
+  await server.register(orderRoutes, { prefix: '/api' });
+  await server.register(quizRoutes, { prefix: '/api/quiz' });
+  await server.register(reviewRoutes, { prefix: '/api/reviews' });
   // await server.register(eventRoutes, { prefix: '/api/events' });
 
   // 404 handler
