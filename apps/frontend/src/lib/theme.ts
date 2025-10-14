@@ -69,6 +69,7 @@ export const theme = {
   interactions: {
     scale: {
       hover: '1.02',
+      press: '0.98',
     },
   },
 };
