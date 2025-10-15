@@ -335,28 +335,30 @@ const ScrollArrow = styled(motion.div)`
 `;
 
 const MuteButton = styled(motion.button)`
-  position: absolute;
-  top: ${theme.spacing[4]};
+  position: fixed;
+  top: 90px;
   right: ${theme.spacing[4]};
-  z-index: 20;
-  width: 48px;
-  height: 48px;
+  z-index: 999;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   color: ${theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 20px;
+  font-size: 22px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   
   &:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   }
   
   &:active {
@@ -364,11 +366,11 @@ const MuteButton = styled(motion.button)`
   }
   
   @media (max-width: ${theme.breakpoints.sm}) {
-    width: 40px;
-    height: 40px;
-    top: ${theme.spacing[3]};
+    width: 44px;
+    height: 44px;
+    top: 80px;
     right: ${theme.spacing[3]};
-    font-size: 16px;
+    font-size: 18px;
   }
 `;
 
@@ -406,10 +408,11 @@ export function VideoHeroSection() {
         onClick={toggleMute}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: mounted ? 1 : 0, scale: mounted ? 1 : 0.8 }}
-        transition={{ delay: 1.8, duration: 0.5 }}
-        whileHover={{ scale: 1.05 }}
+        transition={{ delay: 0.5, duration: 0.4 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+        title={isMuted ? 'Click to unmute' : 'Click to mute'}
       >
         {isMuted ? '🔇' : '🔊'}
       </MuteButton>
