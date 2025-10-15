@@ -32,7 +32,7 @@ const Eyebrow = styled.span`
   font-weight: ${theme.typography.weights.medium};
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: ${theme.colors.gray.DEFAULT};
+  color: ${theme.colors.gray.medium};
   display: block;
   margin-bottom: ${theme.spacing[3]};
 `;
@@ -82,7 +82,7 @@ const FeatureCard = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, ${theme.colors.black}, ${theme.colors.gray.DEFAULT});
+    background: linear-gradient(90deg, ${theme.colors.black}, ${theme.colors.gray.medium});
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);

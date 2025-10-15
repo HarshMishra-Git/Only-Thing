@@ -32,7 +32,7 @@ const Eyebrow = styled.span`
   font-weight: ${theme.typography.weights.medium};
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: ${theme.colors.gray.DEFAULT};
+  color: ${theme.colors.gray.medium};
   display: block;
   margin-bottom: ${theme.spacing[3]};
 `;

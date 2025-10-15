@@ -108,7 +108,7 @@ const SubHeading = styled(motion.p)`
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  font-weight: ${theme.typography.weights.light};
+  font-weight: ${theme.typography.weights.regular};
 
   strong {
     font-weight: ${theme.typography.weights.bold};

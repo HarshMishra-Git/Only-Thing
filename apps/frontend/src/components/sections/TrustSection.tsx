@@ -55,7 +55,7 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${theme.colors.gray.lighter};
+  background: ${theme.colors.gray.light};
   border: 2px solid ${theme.colors.black};
   font-size: ${theme.typography.sizes['3xl']};
   position: relative;
@@ -92,7 +92,7 @@ const TrustDescription = styled.p`
 `;
 
 const TestimonialsSection = styled.div`
-  background: ${theme.colors.gray.lighter};
+  background: ${theme.colors.gray.light};
   padding: ${theme.spacing[12]} ${theme.spacing[6]};
   margin: ${theme.spacing[16]} 0;
 

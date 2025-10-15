@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const SectionContainer = styled.section`
   padding: ${theme.spacing[16]} ${theme.spacing[4]};
-  background: ${theme.colors.gray.lighter};
+  background: ${theme.colors.gray.light};
   position: relative;
 
   @media (max-width: ${theme.breakpoints.md}) {
@@ -41,7 +41,7 @@ const Eyebrow = styled.span`
   font-weight: ${theme.typography.weights.medium};
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: ${theme.colors.gray.DEFAULT};
+  color: ${theme.colors.gray.medium};
   display: block;
   margin-bottom: ${theme.spacing[3]};
 `;
@@ -159,7 +159,7 @@ const BarLabel = styled.div`
 const BarTrack = styled.div`
   flex: 1;
   height: 40px;
-  background: ${theme.colors.gray.lighter};
+  background: ${theme.colors.gray.light};
   position: relative;
   overflow: hidden;
 `;
@@ -286,7 +286,7 @@ export function ScienceSection() {
                 Clinical Trial Results
               </LegendItem>
               <LegendItem>
-                <LegendDot color={theme.colors.gray.DEFAULT} />
+                <LegendDot color={theme.colors.gray.medium} />
                 8-Week Study Period
               </LegendItem>
             </ChartLegend>

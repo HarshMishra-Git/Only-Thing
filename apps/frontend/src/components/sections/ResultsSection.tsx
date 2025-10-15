@@ -194,7 +194,7 @@ const StatValue = styled.div`
 const StatLabel = styled.div`
   font-family: ${theme.typography.fonts.body};
   font-size: ${theme.typography.sizes.xs};
-  color: ${theme.colors.gray.DEFAULT};
+  color: ${theme.colors.gray.medium};
   text-transform: uppercase;
   letter-spacing: 0.1em;
 `;
