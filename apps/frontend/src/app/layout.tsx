@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     default: 'Only Thing Health & Wellness',
     template: '%s | Only Thing Health & Wellness',
   },
-  description: 'Premium clinical-grade skincare backed by science and personalized for your unique skin needs.',
+  description: 'Only Thing Health & Wellness is a personalized skincare e-commerce platform. Users can sign in with Google to receive personalized product recommendations, take skin assessments, purchase clinical-grade skincare products, and track their skincare journey.',
   keywords: ['skincare', 'clinical skincare', 'intelligent skincare', 'personalized skincare', 'health', 'wellness'],
   authors: [{ name: 'Only Thing Health & Wellness LLP' }],
   creator: 'Only Thing Health & Wellness LLP',

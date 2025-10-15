@@ -12,10 +12,10 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Only Thing Health & Wellness | Intelligent Skincare',
-  description: 'Premium clinical-grade skincare backed by science. Personalized recommendations based on your unique skin needs.',
+  description: 'Only Thing Health & Wellness is a personalized skincare platform offering premium clinical-grade products backed by science. Sign in with Google to receive personalized product recommendations, take skin assessments, and shop our science-backed formulations.',
   openGraph: {
     title: 'Only Thing Health & Wellness | Intelligent Skincare',
-    description: 'Premium clinical-grade skincare backed by science.',
+    description: 'Only Thing Health & Wellness is a personalized skincare platform. Sign in with Google to receive personalized product recommendations and shop science-backed formulations.',
     type: 'website',
     url: 'https://onlything.com',
     images: [
