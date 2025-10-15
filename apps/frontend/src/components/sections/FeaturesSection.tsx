@@ -59,8 +59,12 @@ const Description = styled.p`
 
 const FeaturesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: ${theme.spacing[6]};
+  grid-template-columns: repeat(4, 1fr);
+  gap: ${theme.spacing[4]};
+
+  @media (max-width: ${theme.breakpoints.lg}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: ${theme.breakpoints.sm}) {
     grid-template-columns: 1fr;
@@ -70,7 +74,7 @@ const FeaturesGrid = styled.div`
 const FeatureCard = styled(motion.div)`
   background: ${theme.colors.white};
   border: 1px solid ${theme.colors.gray.light};
-  padding: ${theme.spacing[8]};
+  padding: ${theme.spacing[4]};
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,16 +108,16 @@ const FeatureCard = styled(motion.div)`
 `;
 
 const IconWrapper = styled.div`
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: ${theme.colors.black};
   color: ${theme.colors.white};
-  font-size: ${theme.typography.sizes['3xl']};
+  font-size: ${theme.typography.sizes.xl};
   font-weight: ${theme.typography.weights.bold};
-  margin-bottom: ${theme.spacing[4]};
+  margin-bottom: ${theme.spacing[3]};
   position: relative;
   
   &::after {
@@ -133,32 +137,32 @@ const IconWrapper = styled.div`
 
 const FeatureTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
-  font-size: ${theme.typography.sizes.xl};
+  font-size: ${theme.typography.sizes.base};
   font-weight: ${theme.typography.weights.bold};
   color: ${theme.colors.black};
-  margin-bottom: ${theme.spacing[3]};
+  margin-bottom: ${theme.spacing[2]};
   text-transform: uppercase;
   letter-spacing: 0.03em;
 `;
 
 const FeatureDescription = styled.p`
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.base};
+  font-size: ${theme.typography.sizes.sm};
   color: ${theme.colors.gray.dark};
-  line-height: 1.7;
-  margin-bottom: ${theme.spacing[4]};
+  line-height: 1.6;
+  margin-bottom: ${theme.spacing[3]};
 `;
 
 const FeatureHighlight = styled.div`
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.sm};
+  font-size: ${theme.typography.sizes.xs};
   font-weight: ${theme.typography.weights.semibold};
   color: ${theme.colors.black};
   text-transform: uppercase;
   letter-spacing: 0.1em;
   display: flex;
   align-items: center;
-  gap: ${theme.spacing[2]};
+  gap: ${theme.spacing[1]};
 
   &::before {
     content: '→';
