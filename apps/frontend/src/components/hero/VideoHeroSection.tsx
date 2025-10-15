@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { theme } from '@/lib/theme';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const HeroContainer = styled.section`
   position: relative;
@@ -39,8 +39,7 @@ const VideoBackground = styled.video`
   transform: translate(-50%, -50%);
   object-fit: cover;
   z-index: 1;
-  opacity: 0.6;
-  filter: brightness(0.8);
+  filter: blur(3px) brightness(0.7);
 `;
 
 const VideoOverlay = styled.div`
@@ -51,11 +50,12 @@ const VideoOverlay = styled.div`
   height: 100%;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.7) 100%
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.6) 100%
   );
   z-index: 2;
+  backdrop-filter: blur(1px);
 `;
 
 const ContentWrapper = styled(motion.div)`
@@ -334,12 +334,59 @@ const ScrollArrow = styled(motion.div)`
   border-radius: 2px;
 `;
 
+const MuteButton = styled(motion.button)`
+  position: absolute;
+  top: ${theme.spacing[4]};
+  right: ${theme.spacing[4]};
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: ${theme.colors.white};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 20px;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    width: 40px;
+    height: 40px;
+    top: ${theme.spacing[3]};
+    right: ${theme.spacing[3]};
+    font-size: 16px;
+  }
+`;
+
 export function VideoHeroSection() {
   const [mounted, setMounted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   const scrollToContent = () => {
     window.scrollTo({
@@ -350,10 +397,22 @@ export function VideoHeroSection() {
 
   return (
     <HeroContainer>
-      <VideoBackground autoPlay loop muted playsInline>
-        <source src="/videos/v1.mp4" type="video/mp4" />
+      <VideoBackground ref={videoRef} autoPlay loop muted playsInline>
+        <source src="/videos/OT Video.mp4" type="video/mp4" />
       </VideoBackground>
       <VideoOverlay />
+
+      <MuteButton
+        onClick={toggleMute}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: mounted ? 1 : 0, scale: mounted ? 1 : 0.8 }}
+        transition={{ delay: 1.8, duration: 0.5 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+      >
+        {isMuted ? '🔇' : '🔊'}
+      </MuteButton>
 
       <ContentWrapper
         initial={{ opacity: 0, y: 40 }}
