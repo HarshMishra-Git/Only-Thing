@@ -119,16 +119,24 @@ const ProductCard = styled(Link)`
   }
 `;
 
-const ProductImage = styled.div`
+const ProductImage = styled.div<{ $imageUrl?: string }>`
   width: 100%;
   aspect-ratio: 1;
   background-color: ${theme.colors.gray.light};
+  background-image: ${props => props.$imageUrl ? `url(${props.$imageUrl})` : 'none'};
+  background-size: cover;
+  background-position: center;
   margin-bottom: ${theme.spacing[2]};
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: ${theme.typography.sizes['4xl']};
   color: ${theme.colors.gray.medium};
+  overflow: hidden;
+  
+  &::after {
+    content: ${props => props.$imageUrl ? '""' : '"📦"'};
+  }
 `;
 
 const ProductCategory = styled.span`
@@ -256,7 +264,7 @@ export default function ProductsPage() {
               {filteredProducts.map(product => (
                 <motion.div key={product.id} variants={itemVariants}>
                   <ProductCard href={`/products/${product.slug}`}>
-                    <ProductImage>📦</ProductImage>
+                    <ProductImage $imageUrl={product.images[0]} />
                     <ProductCategory>{product.category}</ProductCategory>
                     <ProductTitle>{product.name}</ProductTitle>
                     <ProductShortDesc>{product.shortDescription}</ProductShortDesc>
