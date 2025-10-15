@@ -94,8 +94,8 @@ const ComparisonImage = styled.div<{ src: string; position?: 'before' | 'after' 
   background-position: center;
 `;
 
-const BeforeImage = styled(ComparisonImage)`
-  clip-path: ${props => `inset(0 ${100 - (props as any).clipPosition}% 0 0)`};
+const BeforeImage = styled(ComparisonImage)<{ clipPosition: number }>`
+  clip-path: ${props => `inset(0 ${100 - props.clipPosition}% 0 0)`};
   z-index: 2;
 `;
 
