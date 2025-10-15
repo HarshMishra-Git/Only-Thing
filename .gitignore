@@ -138,13 +138,6 @@ tmp/
 .turbo/
 
 # ========================================
-# LARGE MEDIA FILES
-# ========================================
-# Large video files (deploy separately or use CDN)
-apps/frontend/public/videos/OT Video.mp4
-*.mp4
-
-# ========================================
 # SECURITY - DO NOT COMMIT
 # ========================================
 # Google OAuth credentials

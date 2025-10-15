@@ -4,7 +4,6 @@ import { GlobalStyles } from '@/styles/GlobalStyles';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ToastProvider } from '@/components/ui/Toast';
 import { BackToTop } from '@/components/ui/BackToTop';
-import { DarkModeToggle } from '@/components/ui/DarkModeToggle';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://onlything.com'),
@@ -60,7 +59,6 @@ export default function RootLayout({
           <AuthProvider>
             {children}
             <BackToTop />
-            <DarkModeToggle />
           </AuthProvider>
         </ThemeProvider>
       </body>

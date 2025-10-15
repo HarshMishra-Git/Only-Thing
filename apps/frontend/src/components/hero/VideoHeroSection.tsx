@@ -398,8 +398,7 @@ export function VideoHeroSection() {
   return (
     <HeroContainer>
       <VideoBackground ref={videoRef} autoPlay loop muted playsInline>
-        {/* Using Google Drive hosted video */}
-        <source src="https://drive.google.com/uc?export=download&id=103kzYrbWDF5fOLkX3qEel951K_8-KIIF" type="video/mp4" />
+        <source src="/videos/OT Video.mp4" type="video/mp4" />
       </VideoBackground>
       <VideoOverlay />
 
