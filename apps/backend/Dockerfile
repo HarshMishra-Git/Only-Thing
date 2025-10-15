@@ -11,11 +11,11 @@ COPY package*.json ./
 
 # Install production dependencies
 FROM base AS dependencies
-RUN npm install --only=production && npm cache clean --force
+RUN npm ci --only=production && npm cache clean --force
 
 # Build stage
 FROM base AS build
-RUN npm install
+RUN npm ci
 COPY . .
 RUN npm run build
 

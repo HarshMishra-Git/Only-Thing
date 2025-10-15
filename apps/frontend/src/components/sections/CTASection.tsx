@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const SectionContainer = styled.section`
-  padding: ${theme.spacing[20]} ${theme.spacing[4]};
+  padding: ${theme.spacing[16]} ${theme.spacing[4]};
   background: ${theme.colors.black};
   color: ${theme.colors.white};
   text-align: center;
@@ -15,7 +15,7 @@ const SectionContainer = styled.section`
   overflow: hidden;
 
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: ${theme.spacing[16]} ${theme.spacing[3]};
+    padding: ${theme.spacing[12]} ${theme.spacing[3]};
   }
 `;
 
