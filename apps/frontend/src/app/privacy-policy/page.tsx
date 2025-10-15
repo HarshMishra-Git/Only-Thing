@@ -35,9 +35,54 @@ export default function PrivacyPolicyPage() {
           <li>Provide personalized product recommendations</li>
           <li>Send order confirmations and shipping updates</li>
           <li>Improve our website and services</li>
+          <li>Authenticate your identity when you sign in</li>
         </ul>
+        
+        <h2>Google OAuth Authentication</h2>
+        <p>
+          We use Google OAuth for secure authentication. When you sign in with Google, we receive your:
+        </p>
+        <ul>
+          <li>Name and email address</li>
+          <li>Profile picture (if available)</li>
+        </ul>
+        <p>
+          We DO NOT access, store, or share your Google password. Your Google credentials remain secure 
+          with Google. We only use this information to authenticate your identity and provide you with 
+          a personalized experience on our platform.
+        </p>
+        
+        <h2>Data Security</h2>
+        <p>
+          We implement industry-standard security measures to protect your personal information. Your 
+          payment information is processed through secure, PCI-compliant payment providers and is never 
+          stored on our servers.
+        </p>
+        
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Access your personal data</li>
+          <li>Request correction of inaccurate data</li>
+          <li>Request deletion of your data</li>
+          <li>Opt-out of marketing communications</li>
+        </ul>
+        
+        <h2>Third-Party Services</h2>
+        <p>
+          We use trusted third-party services for authentication (Google), payment processing, 
+          and analytics. These services have their own privacy policies and handle data according 
+          to their terms.
+        </p>
+        
         <h2>Contact Us</h2>
-        <p>Email: privacy@onlything.com | Phone: 1800-XXX-XXXX</p>
+        <p>
+          If you have any questions about this Privacy Policy or how we handle your data, please contact us:
+        </p>
+        <p>
+          <strong>Email:</strong> privacy@onlything.com<br />
+          <strong>Address:</strong> Only Thing Health & Wellness LLP, India
+        </p>
       </ContentPage>
       <Footer />
     </>
