@@ -37,7 +37,7 @@ COPY package*.json ./
 # Generate Prisma client
 RUN npx prisma generate
 
-# Expose port (will be overridden by EB to 8080)
+# Expose port (App Runner will map to this port)
 EXPOSE 8080
 
 # Start application
