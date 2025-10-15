@@ -398,7 +398,10 @@ export function VideoHeroSection() {
   return (
     <HeroContainer>
       <VideoBackground ref={videoRef} autoPlay loop muted playsInline>
+        {/* Option 1: Local file (if deployed from local machine) */}
         <source src="/videos/OT Video.mp4" type="video/mp4" />
+        {/* Option 2: Use CDN URL (uncomment and replace with your Cloudinary/CDN URL) */}
+        {/* <source src="https://res.cloudinary.com/yourname/video/upload/OT-Video.mp4" type="video/mp4" /> */}
       </VideoBackground>
       <VideoOverlay />
 
