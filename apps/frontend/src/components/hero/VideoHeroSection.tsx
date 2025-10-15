@@ -336,7 +336,7 @@ const ScrollArrow = styled(motion.div)`
 
 const MuteButton = styled(motion.button)`
   position: absolute;
-  top: ${theme.spacing[6]};
+  top: 120px;
   right: ${theme.spacing[6]};
   z-index: 100;
   width: 56px;
@@ -368,7 +368,7 @@ const MuteButton = styled(motion.button)`
   @media (max-width: ${theme.breakpoints.md}) {
     width: 50px;
     height: 50px;
-    top: ${theme.spacing[5]};
+    top: 100px;
     right: ${theme.spacing[5]};
     font-size: 20px;
   }
@@ -376,7 +376,7 @@ const MuteButton = styled(motion.button)`
   @media (max-width: ${theme.breakpoints.sm}) {
     width: 46px;
     height: 46px;
-    top: ${theme.spacing[4]};
+    top: 90px;
     right: ${theme.spacing[4]};
     font-size: 18px;
   }
