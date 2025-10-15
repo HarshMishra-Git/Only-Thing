@@ -6,11 +6,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const SectionContainer = styled.section`
-  padding: ${theme.spacing[16]} ${theme.spacing[4]};
+  padding: ${theme.spacing[12]} ${theme.spacing[4]};
   background: ${theme.colors.white};
 
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: ${theme.spacing[12]} ${theme.spacing[3]};
+    padding: ${theme.spacing[8]} ${theme.spacing[3]};
   }
 `;
 
@@ -22,8 +22,8 @@ const ContentWrapper = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: ${theme.spacing[8]};
-  margin-bottom: ${theme.spacing[16]};
+  gap: ${theme.spacing[4]};
+  margin-bottom: ${theme.spacing[8]};
 
   @media (max-width: ${theme.breakpoints.lg}) {
     grid-template-columns: repeat(2, 1fr);
@@ -36,10 +36,15 @@ const Grid = styled.div`
 
 const TrustCard = styled(motion.div)`
   text-align: center;
-  padding: ${theme.spacing[6]};
+  padding: ${theme.spacing[4]};
   border: 1px solid ${theme.colors.gray.light};
   background: ${theme.colors.white};
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
 
   &:hover {
     border-color: ${theme.colors.black};
@@ -49,34 +54,26 @@ const TrustCard = styled(motion.div)`
 `;
 
 const IconWrapper = styled.div`
-  width: 80px;
-  height: 80px;
-  margin: 0 auto ${theme.spacing[4]};
+  width: 100%;
+  height: 160px;
+  margin-bottom: ${theme.spacing[3]};
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${theme.colors.gray.light};
-  border: 2px solid ${theme.colors.black};
-  font-size: ${theme.typography.sizes['3xl']};
   position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border: 2px solid ${theme.colors.gray.light};
-    transition: all 0.3s ease;
-  }
-
-  ${TrustCard}:hover &::after {
-    inset: -10px;
-    border-color: ${theme.colors.black};
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: ${theme.spacing[3]};
   }
 `;
 
 const TrustTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
-  font-size: ${theme.typography.sizes.lg};
+  font-size: ${theme.typography.sizes.base};
   font-weight: ${theme.typography.weights.bold};
   color: ${theme.colors.black};
   margin-bottom: ${theme.spacing[2]};
@@ -93,11 +90,11 @@ const TrustDescription = styled.p`
 
 const TestimonialsSection = styled.div`
   background: ${theme.colors.gray.light};
-  padding: ${theme.spacing[12]} ${theme.spacing[6]};
-  margin: ${theme.spacing[16]} 0;
+  padding: ${theme.spacing[8]} ${theme.spacing[6]};
+  margin: ${theme.spacing[8]} 0 0 0;
 
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: ${theme.spacing[8]} ${theme.spacing[4]};
+    padding: ${theme.spacing[6]} ${theme.spacing[4]};
   }
 `;
 
@@ -196,22 +193,22 @@ const CertBadge = styled.div`
 
 const trustPoints = [
   {
-    icon: '🔬',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80',
     title: 'Clinically Tested',
     description: 'All formulations undergo rigorous double-blind clinical trials'
   },
   {
-    icon: '🌿',
+    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=400&q=80',
     title: 'Clean Formulas',
     description: 'No parabens, sulfates, or synthetic fragrances'
   },
   {
-    icon: '🧬',
+    image: 'https://images.unsplash.com/photo-1579154204845-80989e0d0e44?w=400&q=80',
     title: 'Science-Backed',
     description: 'Peer-reviewed research validates every ingredient'
   },
   {
-    icon: '♻️',
+    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=80',
     title: 'Sustainable',
     description: 'Eco-friendly packaging and ethical sourcing'
   }
@@ -259,7 +256,9 @@ export function TrustSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1, duration: 0.6 }}
             >
-              <IconWrapper>{point.icon}</IconWrapper>
+              <IconWrapper>
+                <img src={point.image} alt={point.title} />
+              </IconWrapper>
               <TrustTitle>{point.title}</TrustTitle>
               <TrustDescription>{point.description}</TrustDescription>
             </TrustCard>

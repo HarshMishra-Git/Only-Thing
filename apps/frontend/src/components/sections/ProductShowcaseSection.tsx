@@ -105,7 +105,7 @@ const products = [
     price: 89.00,
     rating: 4.8,
     reviewCount: 324,
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&q=80',
     features: ['5% Retinal', 'Peptide Complex', 'Fast Absorbing'],
     badges: ['bestseller' as const],
     inStock: true
@@ -119,7 +119,7 @@ const products = [
     price: 75.00,
     rating: 4.9,
     reviewCount: 512,
-    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=800&q=80',
     features: ['72hr Hydration', 'Ceramides', 'Non-Greasy'],
     badges: ['new' as const],
     inStock: true
@@ -133,7 +133,7 @@ const products = [
     price: 95.00,
     rating: 4.7,
     reviewCount: 289,
-    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80',
     features: ['20% Vitamin C', 'Ferulic Acid', 'Brightening'],
     badges: ['clinical' as const],
     inStock: true
