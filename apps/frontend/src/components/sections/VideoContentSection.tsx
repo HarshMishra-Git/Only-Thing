@@ -51,7 +51,7 @@ const Grid = styled.div`
 
   @media (max-width: ${theme.breakpoints.lg}) {
     grid-template-columns: 1fr;
-    gap: ${theme.spacing[8}};
+    gap: ${theme.spacing[8]};
   }
 `;
 
