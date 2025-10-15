@@ -19,8 +19,8 @@ const FooterInner = styled.div`
 
 const FooterGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: ${theme.spacing[3]};
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+  gap: ${theme.spacing[4]};
   margin-bottom: ${theme.spacing[4]};
 
   @media (max-width: ${theme.breakpoints.lg}) {
@@ -33,6 +33,38 @@ const FooterGrid = styled.div`
 `;
 
 const FooterColumn = styled.div``;
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing[2]};
+`;
+
+const LogoWrapper = styled.div`
+  background-color: ${theme.colors.white};
+  padding: ${theme.spacing[2]};
+  display: inline-block;
+  border-radius: 8px;
+  width: fit-content;
+`;
+
+const BrandName = styled.h3`
+  font-family: ${theme.typography.fonts.display};
+  font-size: ${theme.typography.sizes.xl};
+  font-weight: ${theme.typography.weights.black};
+  color: ${theme.colors.white};
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+`;
+
+const BrandDescription = styled.p`
+  font-family: ${theme.typography.fonts.body};
+  font-size: ${theme.typography.sizes.sm};
+  color: ${theme.colors.gray.medium};
+  line-height: 1.6;
+  margin: 0;
+`;
 
 const ColumnTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
@@ -153,32 +185,15 @@ export function Footer() {
       <FooterInner>
         <FooterGrid>
           <FooterColumn>
-            <ColumnTitle>Only Thing</ColumnTitle>
-            <h3 style={{ 
-              fontSize: theme.typography.sizes.lg, 
-              color: theme.colors.white,
-              fontFamily: theme.typography.fonts.display,
-              fontWeight: theme.typography.weights.bold,
-              letterSpacing: theme.typography.letterSpacing.wide,
-              textTransform: 'uppercase',
-              marginBottom: theme.spacing[2]
-            }}>
-              ONLY THING
-            </h3>
-            <p style={{ fontSize: theme.typography.sizes.sm, color: theme.colors.gray.medium, marginBottom: theme.spacing[2], lineHeight: '1.5' }}>
-              Only Thing Health & Wellness LLP delivers clinical-grade skincare backed by science. 
-              Our formulations combine dermatological expertise with cutting-edge biochemistry for 
-              measurable, intelligent results.
-            </p>
-            <div style={{ 
-              marginTop: theme.spacing[1], 
-              backgroundColor: theme.colors.white, 
-              padding: theme.spacing[1], 
-              display: 'inline-block',
-              borderRadius: '4px'
-            }}>
-              <img src="/images/logo/ot-logo.jpg" alt="Only Thing" style={{ height: '50px', width: 'auto', display: 'block' }} />
-            </div>
+            <LogoContainer>
+              <LogoWrapper>
+                <img src="/images/logo/ot-logo.jpg" alt="Only Thing" style={{ height: '60px', width: 'auto', display: 'block' }} />
+              </LogoWrapper>
+              <BrandName>ONLY THING</BrandName>
+              <BrandDescription>
+                Clinical-grade skincare backed by science. Combining dermatological expertise with cutting-edge biochemistry for measurable, intelligent results.
+              </BrandDescription>
+            </LogoContainer>
           </FooterColumn>
           <FooterColumn>
             <ColumnTitle>Shop</ColumnTitle>
