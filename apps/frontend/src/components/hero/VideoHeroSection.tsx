@@ -335,41 +335,49 @@ const ScrollArrow = styled(motion.div)`
 `;
 
 const MuteButton = styled(motion.button)`
-  position: fixed;
-  top: 90px;
-  right: ${theme.spacing[4]};
-  z-index: 999;
-  width: 52px;
-  height: 52px;
+  position: absolute;
+  top: ${theme.spacing[6]};
+  right: ${theme.spacing[6]};
+  z-index: 100;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   color: ${theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 22px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-size: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   
   &:hover {
-    background: rgba(0, 0, 0, 0.8);
-    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.9);
+    border-color: rgba(255, 255, 255, 0.8);
     transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
   }
   
   &:active {
     transform: scale(0.95);
   }
   
+  @media (max-width: ${theme.breakpoints.md}) {
+    width: 50px;
+    height: 50px;
+    top: ${theme.spacing[5]};
+    right: ${theme.spacing[5]};
+    font-size: 20px;
+  }
+  
   @media (max-width: ${theme.breakpoints.sm}) {
-    width: 44px;
-    height: 44px;
-    top: 80px;
-    right: ${theme.spacing[3]};
+    width: 46px;
+    height: 46px;
+    top: ${theme.spacing[4]};
+    right: ${theme.spacing[4]};
     font-size: 18px;
   }
 `;
