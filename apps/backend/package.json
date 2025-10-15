@@ -13,7 +13,8 @@
     "db:seed": "tsx src/prisma/seed.ts",
     "db:studio": "prisma studio",
     "test": "jest",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@fastify/cors": "^8.5.0",
@@ -30,6 +31,7 @@
     "@sentry/profiling-node": "^10.19.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
+    "fast-jwt": "^6.0.2",
     "fastify": "^4.25.2",
     "google-auth-library": "^10.4.0",
     "pg": "^8.16.3",
@@ -55,5 +57,8 @@
     "prisma": "^5.9.1",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

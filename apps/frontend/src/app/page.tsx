@@ -1,5 +1,6 @@
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
+import { EnhancedHeroSection } from '@/components/hero/EnhancedHeroSection';
 import { AdvancedHomePage } from '@/components/home/AdvancedHomePage';
 import { Metadata } from 'next';
 
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
+      <EnhancedHeroSection />
       <Header />
       <AdvancedHomePage />
       <Footer />
