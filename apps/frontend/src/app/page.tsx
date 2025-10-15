@@ -1,7 +1,13 @@
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
-import { EnhancedHeroSection } from '@/components/hero/EnhancedHeroSection';
-import { AdvancedHomePage } from '@/components/home/AdvancedHomePage';
+import { VideoHeroSection } from '@/components/hero/VideoHeroSection';
+import { FeaturesSection } from '@/components/sections/FeaturesSection';
+import { ScienceSection } from '@/components/sections/ScienceSection';
+import { VideoContentSection } from '@/components/sections/VideoContentSection';
+import { ProductShowcaseSection } from '@/components/sections/ProductShowcaseSection';
+import { ResultsSection } from '@/components/sections/ResultsSection';
+import { TrustSection } from '@/components/sections/TrustSection';
+import { CTASection } from '@/components/sections/CTASection';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -32,9 +38,15 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <EnhancedHeroSection />
       <Header />
-      <AdvancedHomePage />
+      <VideoHeroSection />
+      <FeaturesSection />
+      <ScienceSection />
+      <VideoContentSection />
+      <ProductShowcaseSection />
+      <ResultsSection />
+      <TrustSection />
+      <CTASection />
       <Footer />
     </>
   );
