@@ -20,7 +20,7 @@ const SectionContainer = styled.section`
 const VideoWrapper = styled.div`
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 16;
+  height: 600px;
   background: ${theme.colors.gray.light};
   overflow: hidden;
   border-radius: ${theme.radii.lg};
@@ -31,19 +31,27 @@ const VideoWrapper = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  
+  @media (max-width: ${theme.breakpoints.lg}) {
+    height: 500px;
+  }
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    height: 400px;
+  }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 45% 55%;
-  gap: ${theme.spacing[12]};
+  grid-template-columns: 40% 60%;
+  gap: ${theme.spacing[8]};
   align-items: center;
   max-width: 1600px;
   margin: 0 auto;
 
   @media (max-width: ${theme.breakpoints.lg}) {
     grid-template-columns: 1fr;
-    gap: ${theme.spacing[8]};
+    gap: ${theme.spacing[8}};
   }
 `;
 
@@ -64,25 +72,25 @@ const Eyebrow = styled.span`
 
 const Heading = styled.h2`
   font-family: ${theme.typography.fonts.display};
-  font-size: clamp(${theme.typography.sizes['3xl']}, 5vw, ${theme.typography.sizes['5xl']});
+  font-size: clamp(${theme.typography.sizes['2xl']}, 4vw, ${theme.typography.sizes['4xl']});
   font-weight: ${theme.typography.weights.black};
   line-height: 1.1;
-  margin-bottom: ${theme.spacing[6]};
+  margin-bottom: ${theme.spacing[4]};
   text-transform: uppercase;
   letter-spacing: -0.02em;
   color: ${theme.colors.black};
 
   @media (max-width: ${theme.breakpoints.md}) {
-    font-size: ${theme.typography.sizes['3xl']};
+    font-size: ${theme.typography.sizes['2xl']};
   }
 `;
 
 const Description = styled.p`
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.lg};
+  font-size: ${theme.typography.sizes.base};
   line-height: 1.7;
   color: ${theme.colors.gray.dark};
-  margin-bottom: ${theme.spacing[6]};
+  margin-bottom: ${theme.spacing[4]};
 `;
 
 const SubDescription = styled.p`
@@ -90,7 +98,7 @@ const SubDescription = styled.p`
   font-size: ${theme.typography.sizes.base};
   line-height: 1.7;
   color: ${theme.colors.gray.dark};
-  margin-bottom: ${theme.spacing[6]};
+  margin-bottom: ${theme.spacing[4]};
 `;
 
 const CTAButton = styled(Link)`
@@ -129,7 +137,7 @@ const TagLine = styled.div`
   font-family: ${theme.typography.fonts.body};
   font-size: ${theme.typography.sizes.sm};
   color: ${theme.colors.gray.dark};
-  margin-bottom: ${theme.spacing[8]};
+  margin-bottom: ${theme.spacing[6]};
   
   &::before {
     content: '🌱';
