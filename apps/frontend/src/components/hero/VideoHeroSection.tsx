@@ -9,15 +9,22 @@ import { useState, useEffect } from 'react';
 const HeroContainer = styled.section`
   position: relative;
   height: 100vh;
-  min-height: 700px;
+  min-height: 650px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: ${theme.colors.black};
+  padding: ${theme.spacing[8]} 0;
 
   @media (max-width: ${theme.breakpoints.md}) {
-    min-height: 600px;
+    min-height: 550px;
+    padding: ${theme.spacing[6]} 0;
+  }
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    min-height: 500px;
+    padding: ${theme.spacing[4]} 0;
   }
 `;
 
@@ -56,30 +63,44 @@ const ContentWrapper = styled(motion.div)`
   z-index: 10;
   text-align: center;
   max-width: 1200px;
-  padding: 0 ${theme.spacing[4]};
+  width: 100%;
+  padding: 0 ${theme.spacing[6]};
   color: ${theme.colors.white};
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: 0 ${theme.spacing[4]};
+  }
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    padding: 0 ${theme.spacing[3]};
+  }
 `;
 
 const Eyebrow = styled(motion.span)`
   display: inline-block;
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.sm};
+  font-size: clamp(10px, 1.5vw, ${theme.typography.sizes.sm});
   font-weight: ${theme.typography.weights.medium};
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: ${theme.colors.gray.light};
-  margin-bottom: ${theme.spacing[4]};
+  margin-bottom: ${theme.spacing[3]};
   opacity: 0.9;
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
 `;
 
 const MainHeading = styled(motion.h1)`
   font-family: ${theme.typography.fonts.display};
-  font-size: clamp(48px, 8vw, 120px);
+  font-size: clamp(32px, 6vw, 72px);
   font-weight: ${theme.typography.weights.black};
-  line-height: 0.95;
-  margin-bottom: ${theme.spacing[5]};
+  line-height: 1.1;
+  margin-bottom: ${theme.spacing[4]};
   text-transform: uppercase;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   
   background: linear-gradient(
     135deg,
@@ -95,17 +116,23 @@ const MainHeading = styled(motion.h1)`
   text-shadow: 0 0 80px rgba(255, 255, 255, 0.3);
 
   @media (max-width: ${theme.breakpoints.md}) {
-    font-size: clamp(36px, 10vw, 64px);
+    font-size: clamp(28px, 8vw, 56px);
+    line-height: 1.15;
+  }
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: clamp(24px, 9vw, 40px);
+    margin-bottom: ${theme.spacing[3]};
   }
 `;
 
 const SubHeading = styled(motion.p)`
   font-family: ${theme.typography.fonts.body};
-  font-size: clamp(${theme.typography.sizes.lg}, 2vw, ${theme.typography.sizes['2xl']});
+  font-size: clamp(14px, 1.8vw, 18px);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.95);
-  margin-bottom: ${theme.spacing[8]};
-  max-width: 800px;
+  margin-bottom: ${theme.spacing[6]};
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   font-weight: ${theme.typography.weights.regular};
@@ -116,35 +143,49 @@ const SubHeading = styled(motion.p)`
   }
 
   @media (max-width: ${theme.breakpoints.md}) {
-    font-size: ${theme.typography.sizes.base};
+    font-size: 15px;
+    max-width: 600px;
+    margin-bottom: ${theme.spacing[5]};
+  }
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: 14px;
+    max-width: 100%;
+    margin-bottom: ${theme.spacing[4]};
   }
 `;
 
 const CTAContainer = styled(motion.div)`
   display: flex;
-  gap: ${theme.spacing[4]};
+  gap: ${theme.spacing[3]};
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: ${theme.spacing[8]};
+  margin-bottom: ${theme.spacing[6]};
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    gap: ${theme.spacing[2]};
+    margin-bottom: ${theme.spacing[4]};
+  }
 `;
 
 const PrimaryButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: ${theme.spacing[4]} ${theme.spacing[8]};
+  padding: 14px 32px;
   background: ${theme.colors.white};
   color: ${theme.colors.black};
   font-family: ${theme.typography.fonts.display};
   font-weight: ${theme.typography.weights.bold};
-  font-size: ${theme.typography.sizes.base};
+  font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-decoration: none;
   border: 2px solid ${theme.colors.white};
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
   
   &::before {
     content: '';
@@ -168,9 +209,15 @@ const PrimaryButton = styled(Link)`
     }
   }
 
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: 12px 28px;
+    font-size: 13px;
+  }
+
   @media (max-width: ${theme.breakpoints.sm}) {
-    padding: ${theme.spacing[3]} ${theme.spacing[6]};
-    font-size: ${theme.typography.sizes.sm};
+    padding: 10px 24px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
   }
 `;
 
@@ -178,17 +225,18 @@ const SecondaryButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: ${theme.spacing[4]} ${theme.spacing[8]};
+  padding: 14px 32px;
   background: transparent;
   color: ${theme.colors.white};
   font-family: ${theme.typography.fonts.display};
   font-weight: ${theme.typography.weights.bold};
-  font-size: ${theme.typography.sizes.base};
+  font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-decoration: none;
   border: 2px solid rgba(255, 255, 255, 0.5);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 
   &:hover {
     background: ${theme.colors.white};
@@ -197,19 +245,29 @@ const SecondaryButton = styled(Link)`
     transform: translateY(-3px);
   }
 
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: 12px 28px;
+    font-size: 13px;
+  }
+
   @media (max-width: ${theme.breakpoints.sm}) {
-    padding: ${theme.spacing[3]} ${theme.spacing[6]};
-    font-size: ${theme.typography.sizes.sm};
+    padding: 10px 24px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
   }
 `;
 
 const StatsContainer = styled(motion.div)`
   display: flex;
-  gap: ${theme.spacing[8]};
+  gap: ${theme.spacing[6]};
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    gap: ${theme.spacing[4]};
+  }
 `;
 
 const StatItem = styled.div`
@@ -218,21 +276,29 @@ const StatItem = styled.div`
 
 const StatValue = styled.div`
   font-family: ${theme.typography.fonts.display};
-  font-size: clamp(${theme.typography.sizes['3xl']}, 5vw, ${theme.typography.sizes['5xl']});
+  font-size: clamp(28px, 4vw, 42px);
   font-weight: ${theme.typography.weights.black};
   color: ${theme.colors.white};
   line-height: 1;
-  margin-bottom: ${theme.spacing[2]};
+  margin-bottom: ${theme.spacing[1]};
   letter-spacing: -0.02em;
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: 24px;
+  }
 `;
 
 const StatLabel = styled.div`
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.sm};
+  font-size: clamp(10px, 1.2vw, 13px);
   color: ${theme.colors.gray.light};
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   font-weight: ${theme.typography.weights.medium};
+  
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: 10px;
+  }
 `;
 
 const ScrollIndicator = styled(motion.div)`
