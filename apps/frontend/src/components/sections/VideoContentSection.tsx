@@ -135,14 +135,99 @@ const TagLine = styled.div`
   align-items: center;
   gap: ${theme.spacing[2]};
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.sm};
-  color: ${theme.colors.gray.dark};
+  font-size: ${theme.typography.sizes.base};
+  color: ${theme.colors.primary};
+  font-weight: ${theme.typography.weights.medium};
   margin-bottom: ${theme.spacing[6]};
+  text-align: center;
+  justify-content: center;
+  padding: ${theme.spacing[3]};
+  background: ${theme.colors.gray.light};
+  border-radius: ${theme.radii.base};
+`;
+
+// Smart Visual Elements Components
+const FeaturesGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${theme.spacing[6]};
+  margin: ${theme.spacing[6]} 0;
+`;
+
+const FeatureCard = styled.div`
+  background: ${theme.colors.white};
+  border: 2px solid ${theme.colors.gray.light};
+  border-radius: ${theme.radii.lg};
+  padding: ${theme.spacing[5]};
+  transition: all ${theme.transitions.duration.base} ${theme.transitions.easing.inOut};
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    border-color: ${theme.colors.primary};
+    transform: translateY(-4px);
+    box-shadow: ${theme.shadows.xl};
+  }
   
   &::before {
-    content: '🌱';
-    font-size: ${theme.typography.sizes.xl};
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, ${theme.colors.primary} 0%, ${theme.colors.accent.gold} 100%);
   }
+`;
+
+const FeatureHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${theme.spacing[3]};
+  margin-bottom: ${theme.spacing[3]};
+`;
+
+const FeatureIcon = styled.div`
+  width: 48px;
+  height: 48px;
+  background: ${theme.colors.primary};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: ${theme.colors.white};
+    fill: none;
+    stroke-width: 2;
+  }
+`;
+
+const FeatureTitle = styled.h3`
+  font-family: ${theme.typography.fonts.display};
+  font-size: ${theme.typography.sizes.xl};
+  font-weight: ${theme.typography.weights.bold};
+  color: ${theme.colors.black};
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const FeatureDescription = styled.p`
+  font-size: ${theme.typography.sizes.base};
+  line-height: 1.6;
+  color: ${theme.colors.gray.dark};
+  margin: 0;
+`;
+
+const FeatureSubtext = styled.p`
+  font-size: ${theme.typography.sizes.sm};
+  line-height: 1.5;
+  color: ${theme.colors.gray.medium};
+  margin-top: ${theme.spacing[2]};
+  font-style: italic;
 `;
 
 export function VideoContentSection() {
@@ -150,6 +235,59 @@ export function VideoContentSection() {
     triggerOnce: true,
     threshold: 0.2
   });
+
+  const features = [
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 01-.586 1.414L12 14l-2.414-2.414A2 2 0 019 10.172V5L8 4z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: 'Intelligent Skincare',
+      description: 'Intelligent Skincare is the evolution of beauty — where science, data, and biology come together to create products that think, adapt, and deliver measurable results.',
+      subtext: 'It\'s not just skincare — it\'s skin intelligence.'
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: 'Powered by Science',
+      description: 'Because real wellness doesn\'t guess — it proves. Every formula, protocol, and ingredient we create is backed by measurable science not trends. We collaborate with researchers, dermatologists, and data scientists to decode how your body and skin truly function.',
+      subtext: 'Evidence-based wellness for measurable results.'
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: 'Crafted for the Future',
+      description: 'Because wellness isn\'t about now — it\'s about next. We design with tomorrow in mind — merging biotechnology, AI insights, and sustainable innovation to future-proof your skin, health, and well-being.',
+      subtext: 'Every formula evolves with you and your environment.'
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: 'Backed by Agile Data',
+      description: 'Because your body changes — and your wellness should too. We believe data isn\'t static — it\'s alive, evolving, and deeply personal. That\'s why our systems learn from you — your biology, your habits, your environment — to refine your wellness experience over time.',
+      subtext: 'Adaptive wellness that evolves with you.'
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+      title: 'Assured Product Purity & Efficacy',
+      description: 'Because integrity is the foundation of intelligence. Every formula at Only Thing is built with uncompromising purity and verified performance. We go beyond "clean beauty" — ensuring that every ingredient is clinically validated, ethically sourced, and scientifically tested for real, measurable results.',
+      subtext: 'Uncompromising purity meets proven performance.'
+    }
+  ];
 
   return (
     <SectionContainer ref={ref}>
@@ -163,24 +301,48 @@ export function VideoContentSection() {
         <TextContent>
           <Eyebrow>EXPERIENCE THE DIFFERENCE</Eyebrow>
           <Heading>
-            WELCOME TO<br />CAPSULE CULTURE
+            INTELLIGENT<br />WELLNESS ECOSYSTEM
           </Heading>
-          <Description>
-            SpoiledChild gives you control of your future and impact on the planet. 
-            Our products have been designed to be refillable reusable or recyclable.
-          </Description>
-          <SubDescription>
-            By joining our auto-refill subscription you become part of our mission 
-            to reduce waste produced by our industry.
-          </SubDescription>
-          <SubDescription>
-            When you commit to SpoiledChild, you are choosing change as consistency 
-            is the key to transformative results.
-          </SubDescription>
-          <TagLine>Stay youth-full and waste less.</TagLine>
-          <CTAButton href="/products">
-            Discover Your Formula
-          </CTAButton>
+          
+          <TagLine>
+            We support the highest standards of Quality and Transparency.
+          </TagLine>
+          
+          <FeaturesGrid>
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+              >
+                <FeatureCard>
+                  <FeatureHeader>
+                    <FeatureIcon>
+                      {feature.icon}
+                    </FeatureIcon>
+                    <FeatureTitle>{feature.title}</FeatureTitle>
+                  </FeatureHeader>
+                  <FeatureDescription>
+                    {feature.description}
+                  </FeatureDescription>
+                  <FeatureSubtext>
+                    {feature.subtext}
+                  </FeatureSubtext>
+                </FeatureCard>
+              </motion.div>
+            ))}
+          </FeaturesGrid>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            <CTAButton href="/products">
+              Discover Your Formula
+            </CTAButton>
+          </motion.div>
         </TextContent>
       </Grid>
     </SectionContainer>
