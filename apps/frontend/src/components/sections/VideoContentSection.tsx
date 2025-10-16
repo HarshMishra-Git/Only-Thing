@@ -48,7 +48,7 @@ const VideoWrapper = styled.div`
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   background: ${theme.colors.black};
   position: sticky;
-  top: 180px;
+  top: 250px;
   
   video {
     width: 100%;
@@ -307,6 +307,7 @@ export function VideoContentSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8 }}
+          style={{ marginTop: '150px' }}
         >
           <VideoWrapper>
             <video autoPlay loop muted playsInline>
