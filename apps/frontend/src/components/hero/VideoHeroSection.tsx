@@ -9,29 +9,29 @@ import { useState, useEffect, useRef } from 'react';
 const HeroContainer = styled.section`
   position: relative;
   height: 100vh;
-  min-height: 700px;
+  min-height: 750px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: ${theme.colors.black};
-  padding-top: 100px;
+  padding-top: 140px;
   padding-bottom: ${theme.spacing[8]};
 
   @media (max-width: ${theme.breakpoints.lg}) {
-    min-height: 650px;
-    padding-top: 90px;
+    min-height: 700px;
+    padding-top: 120px;
   }
 
   @media (max-width: ${theme.breakpoints.md}) {
-    min-height: 600px;
-    padding-top: 80px;
+    min-height: 650px;
+    padding-top: 100px;
     padding-bottom: ${theme.spacing[6]};
   }
   
   @media (max-width: ${theme.breakpoints.sm}) {
-    min-height: 550px;
-    padding-top: 70px;
+    min-height: 600px;
+    padding-top: 90px;
     padding-bottom: ${theme.spacing[4]};
   }
 `;
@@ -74,7 +74,7 @@ const ContentWrapper = styled(motion.div)`
   width: 100%;
   padding: 0 ${theme.spacing[6]};
   color: ${theme.colors.white};
-  margin-top: ${theme.spacing[2]};
+  margin-top: 0;
   
   @media (max-width: ${theme.breakpoints.lg}) {
     max-width: 1000px;
