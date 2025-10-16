@@ -8,23 +8,26 @@ import Link from 'next/link';
 
 const SectionContainer = styled.section`
   position: relative;
-  padding: ${theme.spacing[12]} ${theme.spacing[4]};
+  padding: ${theme.spacing[10]} ${theme.spacing[4]};
   background: ${theme.colors.white};
   overflow: hidden;
 
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: ${theme.spacing[8]} ${theme.spacing[3]};
+    padding: ${theme.spacing[6]} ${theme.spacing[3]};
   }
 `;
 
-const VideoWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 600px;
-  background: ${theme.colors.gray.light};
+const CircularVideoWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
   overflow: hidden;
-  border-radius: ${theme.radii.lg};
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 8px rgba(45, 95, 63, 0.1), 0 0 0 16px rgba(45, 95, 63, 0.05);
+  z-index: 2;
   
   video {
     width: 100%;
@@ -33,25 +36,46 @@ const VideoWrapper = styled.div`
   }
   
   @media (max-width: ${theme.breakpoints.lg}) {
-    height: 500px;
+    width: 280px;
+    height: 280px;
   }
   
-  @media (max-width: ${theme.breakpoints.sm}) {
-    height: 400px;
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: ${theme.spacing[4]} auto;
+    width: 240px;
+    height: 240px;
   }
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 40% 60%;
-  gap: ${theme.spacing[8]};
-  align-items: center;
+const MainContainer = styled.div`
   max-width: 1600px;
   margin: 0 auto;
+  position: relative;
+  min-height: 600px;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    min-height: auto;
+  }
+`;
 
+const ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 320px 1fr;
+  gap: ${theme.spacing[4]};
+  align-items: center;
+  position: relative;
+  
   @media (max-width: ${theme.breakpoints.lg}) {
+    grid-template-columns: 1fr 280px 1fr;
+  }
+  
+  @media (max-width: ${theme.breakpoints.md}) {
     grid-template-columns: 1fr;
-    gap: ${theme.spacing[8]};
+    gap: ${theme.spacing[6]};
   }
 `;
 
@@ -147,26 +171,42 @@ const TagLine = styled.div`
 `;
 
 // Smart Visual Elements Components
-const FeaturesGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: ${theme.spacing[6]};
-  margin: ${theme.spacing[6]} 0;
+const LeftFeatures = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing[4]};
+  padding-right: ${theme.spacing[4]};
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding-right: 0;
+  }
+`;
+
+const RightFeatures = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing[4]};
+  padding-left: ${theme.spacing[4]};
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding-left: 0;
+  }
 `;
 
 const FeatureCard = styled.div`
   background: ${theme.colors.white};
   border: 2px solid ${theme.colors.gray.light};
   border-radius: ${theme.radii.lg};
-  padding: ${theme.spacing[5]};
+  padding: ${theme.spacing[4]};
   transition: all ${theme.transitions.duration.base} ${theme.transitions.easing.inOut};
   position: relative;
   overflow: hidden;
+  box-shadow: ${theme.shadows.sm};
   
   &:hover {
     border-color: ${theme.colors.primary};
-    transform: translateY(-4px);
-    box-shadow: ${theme.shadows.xl};
+    transform: translateY(-2px);
+    box-shadow: ${theme.shadows.lg};
   }
   
   &::before {
@@ -174,22 +214,27 @@ const FeatureCard = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 3px;
     height: 100%;
     background: linear-gradient(180deg, ${theme.colors.primary} 0%, ${theme.colors.accent.gold} 100%);
   }
 `;
 
+const HeaderSection = styled.div`
+  text-align: center;
+  margin-bottom: ${theme.spacing[8]};
+`;
+
 const FeatureHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: ${theme.spacing[3]};
-  margin-bottom: ${theme.spacing[3]};
+  gap: ${theme.spacing[2]};
+  margin-bottom: ${theme.spacing[2]};
 `;
 
 const FeatureIcon = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   background: ${theme.colors.primary};
   border-radius: 50%;
   display: flex;
@@ -198,8 +243,8 @@ const FeatureIcon = styled.div`
   flex-shrink: 0;
   
   svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     stroke: ${theme.colors.white};
     fill: none;
     stroke-width: 2;
@@ -208,7 +253,7 @@ const FeatureIcon = styled.div`
 
 const FeatureTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
-  font-size: ${theme.typography.sizes.xl};
+  font-size: ${theme.typography.sizes.lg};
   font-weight: ${theme.typography.weights.bold};
   color: ${theme.colors.black};
   text-transform: uppercase;
@@ -216,17 +261,17 @@ const FeatureTitle = styled.h3`
 `;
 
 const FeatureDescription = styled.p`
-  font-size: ${theme.typography.sizes.base};
-  line-height: 1.6;
+  font-size: ${theme.typography.sizes.sm};
+  line-height: 1.5;
   color: ${theme.colors.gray.dark};
   margin: 0;
 `;
 
 const FeatureSubtext = styled.p`
-  font-size: ${theme.typography.sizes.sm};
-  line-height: 1.5;
+  font-size: ${theme.typography.sizes.xs};
+  line-height: 1.4;
   color: ${theme.colors.gray.medium};
-  margin-top: ${theme.spacing[2]};
+  margin-top: ${theme.spacing[1]};
   font-style: italic;
 `;
 
@@ -289,31 +334,31 @@ export function VideoContentSection() {
     }
   ];
 
+  // Split features into left and right
+  const leftFeatures = features.slice(0, Math.ceil(features.length / 2));
+  const rightFeatures = features.slice(Math.ceil(features.length / 2));
+
   return (
     <SectionContainer ref={ref}>
-      <Grid>
-        <VideoWrapper>
-          <video autoPlay loop muted playsInline>
-            <source src="/videos/v1.mp4" type="video/mp4" />
-          </video>
-        </VideoWrapper>
-
-        <TextContent>
+      <MainContainer>
+        <HeaderSection>
           <Eyebrow>EXPERIENCE THE DIFFERENCE</Eyebrow>
           <Heading>
             INTELLIGENT<br />WELLNESS ECOSYSTEM
           </Heading>
-          
           <TagLine>
             We support the highest standards of Quality and Transparency.
           </TagLine>
-          
-          <FeaturesGrid>
-            {features.map((feature, index) => (
+        </HeaderSection>
+        
+        <ContentGrid>
+          {/* Left Features */}
+          <LeftFeatures>
+            {leftFeatures.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
+                initial={{ opacity: 0, x: -30 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
               >
                 <FeatureCard>
@@ -332,19 +377,54 @@ export function VideoContentSection() {
                 </FeatureCard>
               </motion.div>
             ))}
-          </FeaturesGrid>
+          </LeftFeatures>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8, duration: 0.6 }}
-          >
-            <CTAButton href="/products">
-              Discover Your Formula
-            </CTAButton>
-          </motion.div>
-        </TextContent>
-      </Grid>
+          {/* Center Circular Video */}
+          <CircularVideoWrapper>
+            <video autoPlay loop muted playsInline>
+              <source src="/videos/v1.mp4" type="video/mp4" />
+            </video>
+          </CircularVideoWrapper>
+          
+          {/* Right Features */}
+          <RightFeatures>
+            {rightFeatures.map((feature, index) => (
+              <motion.div
+                key={index + leftFeatures.length}
+                initial={{ opacity: 0, x: 30 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: (index + leftFeatures.length) * 0.1, duration: 0.6 }}
+              >
+                <FeatureCard>
+                  <FeatureHeader>
+                    <FeatureIcon>
+                      {feature.icon}
+                    </FeatureIcon>
+                    <FeatureTitle>{feature.title}</FeatureTitle>
+                  </FeatureHeader>
+                  <FeatureDescription>
+                    {feature.description}
+                  </FeatureDescription>
+                  <FeatureSubtext>
+                    {feature.subtext}
+                  </FeatureSubtext>
+                </FeatureCard>
+              </motion.div>
+            ))}
+          </RightFeatures>
+        </ContentGrid>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1, duration: 0.6 }}
+          style={{ textAlign: 'center', marginTop: theme.spacing[8] }}
+        >
+          <CTAButton href="/products">
+            Discover Your Formula
+          </CTAButton>
+        </motion.div>
+      </MainContainer>
     </SectionContainer>
   );
 }
