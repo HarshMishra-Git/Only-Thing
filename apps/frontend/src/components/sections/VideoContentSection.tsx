@@ -8,36 +8,50 @@ import Link from 'next/link';
 
 const SectionContainer = styled.section`
   position: relative;
-  padding: ${theme.spacing[10]} ${theme.spacing[4]};
-  background: ${theme.colors.white};
+  padding: ${theme.spacing[12]} ${theme.spacing[4]};
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   overflow: hidden;
+  min-height: 800px;
 
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: ${theme.spacing[6]} ${theme.spacing[3]};
+    padding: ${theme.spacing[8]} ${theme.spacing[3]};
+    min-height: auto;
   }
 `;
 
-const CircularVideoWrapper = styled.div`
+const MainContainer = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+`;
+
+const CentralVideoWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 0 8px rgba(45, 95, 63, 0.1), 0 0 0 16px rgba(45, 95, 63, 0.05);
-  z-index: 2;
+  box-shadow: 
+    0 0 0 3px ${theme.colors.white},
+    0 0 0 6px ${theme.colors.primary},
+    0 20px 40px rgba(45, 95, 63, 0.15);
+  z-index: 10;
+  background: ${theme.colors.white};
   
   video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
   }
   
   @media (max-width: ${theme.breakpoints.lg}) {
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
   }
   
   @media (max-width: ${theme.breakpoints.md}) {
@@ -45,37 +59,23 @@ const CircularVideoWrapper = styled.div`
     top: auto;
     left: auto;
     transform: none;
-    margin: ${theme.spacing[4]} auto;
-    width: 240px;
-    height: 240px;
+    margin: ${theme.spacing[6]} auto;
+    width: 200px;
+    height: 200px;
   }
 `;
 
-const MainContainer = styled.div`
-  max-width: 1600px;
-  margin: 0 auto;
+const FeatureCardsContainer = styled.div`
   position: relative;
-  min-height: 600px;
+  width: 100%;
+  height: 600px;
   
   @media (max-width: ${theme.breakpoints.md}) {
-    min-height: auto;
-  }
-`;
-
-const ContentGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 320px 1fr;
-  gap: ${theme.spacing[4]};
-  align-items: center;
-  position: relative;
-  
-  @media (max-width: ${theme.breakpoints.lg}) {
-    grid-template-columns: 1fr 280px 1fr;
-  }
-  
-  @media (max-width: ${theme.breakpoints.md}) {
-    grid-template-columns: 1fr;
-    gap: ${theme.spacing[6]};
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: ${theme.spacing[4]};
+    margin-top: ${theme.spacing[6]};
   }
 `;
 
@@ -170,71 +170,61 @@ const TagLine = styled.div`
   border-radius: ${theme.radii.base};
 `;
 
-// Smart Visual Elements Components
-const LeftFeatures = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${theme.spacing[4]};
-  padding-right: ${theme.spacing[4]};
-  
-  @media (max-width: ${theme.breakpoints.md}) {
-    padding-right: 0;
-  }
-`;
-
-const RightFeatures = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${theme.spacing[4]};
-  padding-left: ${theme.spacing[4]};
-  
-  @media (max-width: ${theme.breakpoints.md}) {
-    padding-left: 0;
-  }
-`;
-
-const FeatureCard = styled.div`
-  background: ${theme.colors.white};
-  border: 2px solid ${theme.colors.gray.light};
-  border-radius: ${theme.radii.lg};
-  padding: ${theme.spacing[4]};
-  transition: all ${theme.transitions.duration.base} ${theme.transitions.easing.inOut};
-  position: relative;
-  overflow: hidden;
-  box-shadow: ${theme.shadows.sm};
-  
-  &:hover {
-    border-color: ${theme.colors.primary};
-    transform: translateY(-2px);
-    box-shadow: ${theme.shadows.lg};
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, ${theme.colors.primary} 0%, ${theme.colors.accent.gold} 100%);
-  }
-`;
-
+// Header Section
 const HeaderSection = styled.div`
   text-align: center;
-  margin-bottom: ${theme.spacing[8]};
+  margin-bottom: ${theme.spacing[10]};
+  position: relative;
+  z-index: 5;
+`;
+
+// Horizontal Feature Card Styles
+const FeatureCard = styled.div<{ position: { top: string; left: string; right?: string } }>`
+  position: absolute;
+  top: ${props => props.position.top};
+  left: ${props => props.position.left};
+  right: ${props => props.position.right || 'auto'};
+  width: 280px;
+  background: ${theme.colors.white};
+  border: 1px solid ${theme.colors.gray.light};
+  border-radius: ${theme.radii.xl};
+  padding: ${theme.spacing[4]};
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all ${theme.transitions.duration.base} ${theme.transitions.easing.inOut};
+  backdrop-filter: blur(10px);
+  z-index: 5;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(45, 95, 63, 0.15);
+    border-color: ${theme.colors.primary};
+  }
+  
+  @media (max-width: ${theme.breakpoints.lg}) {
+    width: 260px;
+  }
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
 `;
 
 const FeatureHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: ${theme.spacing[2]};
-  margin-bottom: ${theme.spacing[2]};
+  gap: ${theme.spacing[3]};
+  margin-bottom: ${theme.spacing[3]};
 `;
 
 const FeatureIcon = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   background: ${theme.colors.primary};
   border-radius: 50%;
   display: flex;
@@ -243,8 +233,8 @@ const FeatureIcon = styled.div`
   flex-shrink: 0;
   
   svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     stroke: ${theme.colors.white};
     fill: none;
     stroke-width: 2;
@@ -253,32 +243,38 @@ const FeatureIcon = styled.div`
 
 const FeatureTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
-  font-size: ${theme.typography.sizes.lg};
+  font-size: ${theme.typography.sizes.base};
   font-weight: ${theme.typography.weights.bold};
   color: ${theme.colors.black};
   text-transform: uppercase;
   margin: 0;
+  line-height: 1.2;
 `;
 
 const FeatureDescription = styled.p`
   font-size: ${theme.typography.sizes.sm};
   line-height: 1.5;
   color: ${theme.colors.gray.dark};
-  margin: 0;
+  margin: 0 0 ${theme.spacing[2]} 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const FeatureSubtext = styled.p`
   font-size: ${theme.typography.sizes.xs};
-  line-height: 1.4;
-  color: ${theme.colors.gray.medium};
-  margin-top: ${theme.spacing[1]};
+  line-height: 1.3;
+  color: ${theme.colors.primary};
+  margin: 0;
+  font-weight: ${theme.typography.weights.medium};
   font-style: italic;
 `;
 
 export function VideoContentSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.2
+    threshold: 0.1
   });
 
   const features = [
@@ -289,8 +285,9 @@ export function VideoContentSection() {
         </svg>
       ),
       title: 'Intelligent Skincare',
-      description: 'Intelligent Skincare is the evolution of beauty — where science, data, and biology come together to create products that think, adapt, and deliver measurable results.',
-      subtext: 'It\'s not just skincare — it\'s skin intelligence.'
+      description: 'Evolution of beauty where science, data, and biology create products that think, adapt, and deliver measurable results.',
+      subtext: 'It\'s not just skincare — it\'s skin intelligence.',
+      position: { top: '15%', left: '8%' }
     },
     {
       icon: (
@@ -299,8 +296,9 @@ export function VideoContentSection() {
         </svg>
       ),
       title: 'Powered by Science',
-      description: 'Because real wellness doesn\'t guess — it proves. Every formula, protocol, and ingredient we create is backed by measurable science not trends. We collaborate with researchers, dermatologists, and data scientists to decode how your body and skin truly function.',
-      subtext: 'Evidence-based wellness for measurable results.'
+      description: 'Real wellness doesn\'t guess — it proves. Every formula is backed by measurable science, not trends.',
+      subtext: 'Evidence-based wellness for measurable results.',
+      position: { top: '45%', left: '5%' }
     },
     {
       icon: (
@@ -309,8 +307,9 @@ export function VideoContentSection() {
         </svg>
       ),
       title: 'Crafted for the Future',
-      description: 'Because wellness isn\'t about now — it\'s about next. We design with tomorrow in mind — merging biotechnology, AI insights, and sustainable innovation to future-proof your skin, health, and well-being.',
-      subtext: 'Every formula evolves with you and your environment.'
+      description: 'We design with tomorrow in mind — merging biotechnology, AI insights, and sustainable innovation.',
+      subtext: 'Every formula evolves with you and your environment.',
+      position: { top: '75%', left: '12%' }
     },
     {
       icon: (
@@ -319,8 +318,9 @@ export function VideoContentSection() {
         </svg>
       ),
       title: 'Backed by Agile Data',
-      description: 'Because your body changes — and your wellness should too. We believe data isn\'t static — it\'s alive, evolving, and deeply personal. That\'s why our systems learn from you — your biology, your habits, your environment — to refine your wellness experience over time.',
-      subtext: 'Adaptive wellness that evolves with you.'
+      description: 'Your body changes — and your wellness should too. Our systems learn from your biology, habits, and environment.',
+      subtext: 'Adaptive wellness that evolves with you.',
+      position: { top: '15%', right: '8%' }
     },
     {
       icon: (
@@ -329,96 +329,90 @@ export function VideoContentSection() {
         </svg>
       ),
       title: 'Assured Product Purity & Efficacy',
-      description: 'Because integrity is the foundation of intelligence. Every formula at Only Thing is built with uncompromising purity and verified performance. We go beyond "clean beauty" — ensuring that every ingredient is clinically validated, ethically sourced, and scientifically tested for real, measurable results.',
-      subtext: 'Uncompromising purity meets proven performance.'
+      description: 'Integrity is the foundation of intelligence. Every ingredient is clinically validated and scientifically tested.',
+      subtext: 'Uncompromising purity meets proven performance.',
+      position: { top: '75%', right: '12%' }
     }
   ];
-
-  // Split features into left and right
-  const leftFeatures = features.slice(0, Math.ceil(features.length / 2));
-  const rightFeatures = features.slice(Math.ceil(features.length / 2));
 
   return (
     <SectionContainer ref={ref}>
       <MainContainer>
         <HeaderSection>
-          <Eyebrow>EXPERIENCE THE DIFFERENCE</Eyebrow>
-          <Heading>
-            INTELLIGENT<br />WELLNESS ECOSYSTEM
-          </Heading>
-          <TagLine>
-            We support the highest standards of Quality and Transparency.
-          </TagLine>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <Eyebrow>EXPERIENCE THE DIFFERENCE</Eyebrow>
+            <Heading>
+              INTELLIGENT<br />WELLNESS ECOSYSTEM
+            </Heading>
+            <TagLine>
+              We support the highest standards of Quality and Transparency.
+            </TagLine>
+          </motion.div>
         </HeaderSection>
         
-        <ContentGrid>
-          {/* Left Features */}
-          <LeftFeatures>
-            {leftFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-              >
-                <FeatureCard>
-                  <FeatureHeader>
-                    <FeatureIcon>
-                      {feature.icon}
-                    </FeatureIcon>
-                    <FeatureTitle>{feature.title}</FeatureTitle>
-                  </FeatureHeader>
-                  <FeatureDescription>
-                    {feature.description}
-                  </FeatureDescription>
-                  <FeatureSubtext>
-                    {feature.subtext}
-                  </FeatureSubtext>
-                </FeatureCard>
-              </motion.div>
-            ))}
-          </LeftFeatures>
+        <FeatureCardsContainer>
+          {/* Central Video */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <CentralVideoWrapper>
+              <video autoPlay loop muted playsInline>
+                <source src="/videos/v1.mp4" type="video/mp4" />
+              </video>
+            </CentralVideoWrapper>
+          </motion.div>
           
-          {/* Center Circular Video */}
-          <CircularVideoWrapper>
-            <video autoPlay loop muted playsInline>
-              <source src="/videos/v1.mp4" type="video/mp4" />
-            </video>
-          </CircularVideoWrapper>
-          
-          {/* Right Features */}
-          <RightFeatures>
-            {rightFeatures.map((feature, index) => (
-              <motion.div
-                key={index + leftFeatures.length}
-                initial={{ opacity: 0, x: 30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: (index + leftFeatures.length) * 0.1, duration: 0.6 }}
-              >
-                <FeatureCard>
-                  <FeatureHeader>
-                    <FeatureIcon>
-                      {feature.icon}
-                    </FeatureIcon>
-                    <FeatureTitle>{feature.title}</FeatureTitle>
-                  </FeatureHeader>
-                  <FeatureDescription>
-                    {feature.description}
-                  </FeatureDescription>
-                  <FeatureSubtext>
-                    {feature.subtext}
-                  </FeatureSubtext>
-                </FeatureCard>
-              </motion.div>
-            ))}
-          </RightFeatures>
-        </ContentGrid>
+          {/* Positioned Feature Cards */}
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ 
+                opacity: 0, 
+                x: feature.position.left ? -50 : 50,
+                y: 20
+              }}
+              animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
+              transition={{ 
+                duration: 0.6, 
+                delay: 0.5 + (index * 0.1),
+                type: "spring",
+                stiffness: 100
+              }}
+            >
+              <FeatureCard position={feature.position}>
+                <FeatureHeader>
+                  <FeatureIcon>
+                    {feature.icon}
+                  </FeatureIcon>
+                  <FeatureTitle>{feature.title}</FeatureTitle>
+                </FeatureHeader>
+                <FeatureDescription>
+                  {feature.description}
+                </FeatureDescription>
+                <FeatureSubtext>
+                  {feature.subtext}
+                </FeatureSubtext>
+              </FeatureCard>
+            </motion.div>
+          ))}
+        </FeatureCardsContainer>
         
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1, duration: 0.6 }}
-          style={{ textAlign: 'center', marginTop: theme.spacing[8] }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          style={{ 
+            textAlign: 'center', 
+            marginTop: theme.spacing[8],
+            position: 'relative',
+            zIndex: 15
+          }}
         >
           <CTAButton href="/products">
             Discover Your Formula
