@@ -7,14 +7,14 @@ import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 
 const SectionContainer = styled.section`
-  padding: ${theme.spacing[8]} ${theme.spacing[4]};
+  padding: ${theme.spacing[4]} ${theme.spacing[4]};
   background: ${theme.colors.white};
-  min-height: calc(100vh - 73px);
+  min-height: calc(100vh - 80px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: ${theme.spacing[6]} ${theme.spacing[3]};
+    padding: ${theme.spacing[4]} ${theme.spacing[3]};
     min-height: auto;
   }
 `;
@@ -24,13 +24,13 @@ const MainContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: ${theme.spacing[8]};
-  align-items: center;
+  grid-template-columns: 360px 1fr;
+  gap: ${theme.spacing[5]};
+  align-items: start;
   
   @media (max-width: ${theme.breakpoints.lg}) {
-    grid-template-columns: 350px 1fr;
-    gap: ${theme.spacing[6]};
+    grid-template-columns: 320px 1fr;
+    gap: ${theme.spacing[4]};
   }
   
   @media (max-width: ${theme.breakpoints.md}) {
@@ -41,14 +41,14 @@ const MainContainer = styled.div`
 
 const VideoWrapper = styled.div`
   width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  height: calc(100vh - 150px);
+  max-height: 720px;
+  border-radius: ${theme.radii.base};
   overflow: hidden;
-  box-shadow: 
-    0 0 0 4px ${theme.colors.white},
-    0 0 0 8px ${theme.colors.primary},
-    0 20px 50px rgba(45, 95, 63, 0.2);
-  background: ${theme.colors.white};
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  background: ${theme.colors.black};
+  position: sticky;
+  top: 100px;
   
   video {
     width: 100%;
@@ -58,15 +58,19 @@ const VideoWrapper = styled.div`
   
   @media (max-width: ${theme.breakpoints.md}) {
     max-width: 300px;
+    height: 500px;
     margin: 0 auto;
+    position: relative;
+    top: auto;
   }
 `;
 
 const CardsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${theme.spacing[3]};
+  gap: ${theme.spacing[2]};
   max-width: 700px;
+  padding-bottom: ${theme.spacing[3]};
 `;
 
 const TextContent = styled.div`
@@ -76,26 +80,26 @@ const TextContent = styled.div`
 const Eyebrow = styled.span`
   display: block;
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.sm};
+  font-size: 10px;
   font-weight: ${theme.typography.weights.medium};
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: ${theme.colors.gray.dark};
-  margin-bottom: ${theme.spacing[3]};
+  margin-bottom: ${theme.spacing[1]};
 `;
 
 const Heading = styled.h2`
   font-family: ${theme.typography.fonts.display};
-  font-size: clamp(${theme.typography.sizes['2xl']}, 4vw, ${theme.typography.sizes['4xl']});
+  font-size: clamp(20px, 2.5vw, 28px);
   font-weight: ${theme.typography.weights.black};
   line-height: 1.1;
-  margin-bottom: ${theme.spacing[4]};
+  margin-bottom: ${theme.spacing[1]};
   text-transform: uppercase;
   letter-spacing: -0.02em;
   color: ${theme.colors.black};
 
   @media (max-width: ${theme.breakpoints.md}) {
-    font-size: ${theme.typography.sizes['2xl']};
+    font-size: ${theme.typography.sizes.xl};
   }
 `;
 
@@ -147,15 +151,15 @@ const CTAButton = styled(Link)`
 const TagLine = styled.div`
   display: flex;
   align-items: center;
-  gap: ${theme.spacing[2]};
+  gap: ${theme.spacing[1]};
   font-family: ${theme.typography.fonts.body};
-  font-size: ${theme.typography.sizes.base};
+  font-size: 11px;
   color: ${theme.colors.primary};
   font-weight: ${theme.typography.weights.medium};
-  margin-bottom: ${theme.spacing[6]};
+  margin-bottom: ${theme.spacing[2]};
   text-align: center;
   justify-content: center;
-  padding: ${theme.spacing[3]};
+  padding: ${theme.spacing[1]} ${theme.spacing[2]};
   background: ${theme.colors.gray.light};
   border-radius: ${theme.radii.base};
 `;
@@ -163,7 +167,7 @@ const TagLine = styled.div`
 // Header Section
 const HeaderSection = styled.div`
   text-align: center;
-  margin-bottom: ${theme.spacing[10]};
+  margin-bottom: ${theme.spacing[2]};
   position: relative;
   z-index: 5;
 `;
@@ -172,8 +176,8 @@ const HeaderSection = styled.div`
 const FeatureCard = styled.div`
   background: ${theme.colors.white};
   border: 2px solid ${theme.colors.gray.light};
-  border-radius: ${theme.radii.lg};
-  padding: ${theme.spacing[3]};
+  border-radius: ${theme.radii.base};
+  padding: ${theme.spacing[2]};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all ${theme.transitions.duration.base} ${theme.transitions.easing.inOut};
   
@@ -188,12 +192,12 @@ const FeatureHeader = styled.div`
   display: flex;
   align-items: center;
   gap: ${theme.spacing[2]};
-  margin-bottom: ${theme.spacing[2]};
+  margin-bottom: ${theme.spacing[1]};
 `;
 
 const FeatureIcon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   background: ${theme.colors.primary};
   border-radius: 50%;
   display: flex;
@@ -202,8 +206,8 @@ const FeatureIcon = styled.div`
   flex-shrink: 0;
   
   svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     stroke: ${theme.colors.white};
     fill: none;
     stroke-width: 2;
@@ -212,7 +216,7 @@ const FeatureIcon = styled.div`
 
 const FeatureTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
-  font-size: ${theme.typography.sizes.base};
+  font-size: 13px;
   font-weight: ${theme.typography.weights.bold};
   color: ${theme.colors.black};
   text-transform: uppercase;
@@ -221,15 +225,15 @@ const FeatureTitle = styled.h3`
 `;
 
 const FeatureDescription = styled.p`
-  font-size: ${theme.typography.sizes.sm};
-  line-height: 1.5;
+  font-size: 11px;
+  line-height: 1.4;
   color: ${theme.colors.gray.dark};
   margin: 0;
 `;
 
 const FeatureSubtext = styled.p`
-  font-size: ${theme.typography.sizes.xs};
-  line-height: 1.3;
+  font-size: 10px;
+  line-height: 1.2;
   color: ${theme.colors.primary};
   margin-top: ${theme.spacing[1]};
   font-weight: ${theme.typography.weights.medium};
@@ -363,7 +367,7 @@ export function VideoContentSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 1.2, duration: 0.6 }}
-            style={{ marginTop: theme.spacing[6] }}
+            style={{ marginTop: theme.spacing[3] }}
           >
             <CTAButton href="/products">
               Discover Your Formula
