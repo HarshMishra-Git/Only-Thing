@@ -316,7 +316,7 @@ export function VideoContentSection() {
         </motion.div>
         
         {/* Content on RIGHT */}
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
           <HeaderSection>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
