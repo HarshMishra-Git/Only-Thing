@@ -9,22 +9,30 @@ import { useState, useEffect, useRef } from 'react';
 const HeroContainer = styled.section`
   position: relative;
   height: 100vh;
-  min-height: 650px;
+  min-height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: ${theme.colors.black};
-  padding: ${theme.spacing[8]} 0;
+  padding-top: 100px;
+  padding-bottom: ${theme.spacing[8]};
+
+  @media (max-width: ${theme.breakpoints.lg}) {
+    min-height: 650px;
+    padding-top: 90px;
+  }
 
   @media (max-width: ${theme.breakpoints.md}) {
-    min-height: 550px;
-    padding: ${theme.spacing[6]} 0;
+    min-height: 600px;
+    padding-top: 80px;
+    padding-bottom: ${theme.spacing[6]};
   }
   
   @media (max-width: ${theme.breakpoints.sm}) {
-    min-height: 500px;
-    padding: ${theme.spacing[4]} 0;
+    min-height: 550px;
+    padding-top: 70px;
+    padding-bottom: ${theme.spacing[4]};
   }
 `;
 
@@ -66,9 +74,16 @@ const ContentWrapper = styled(motion.div)`
   width: 100%;
   padding: 0 ${theme.spacing[6]};
   color: ${theme.colors.white};
+  margin-top: ${theme.spacing[2]};
+  
+  @media (max-width: ${theme.breakpoints.lg}) {
+    max-width: 1000px;
+    padding: 0 ${theme.spacing[5]};
+  }
   
   @media (max-width: ${theme.breakpoints.md}) {
     padding: 0 ${theme.spacing[4]};
+    max-width: 800px;
   }
   
   @media (max-width: ${theme.breakpoints.sm}) {
@@ -95,12 +110,12 @@ const Eyebrow = styled(motion.span)`
 
 const MainHeading = styled(motion.h1)`
   font-family: ${theme.typography.fonts.display};
-  font-size: clamp(32px, 6vw, 72px);
+  font-size: clamp(36px, 5vw, 64px);
   font-weight: ${theme.typography.weights.black};
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: ${theme.spacing[4]};
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   
   background: linear-gradient(
     135deg,
@@ -115,14 +130,19 @@ const MainHeading = styled(motion.h1)`
   
   text-shadow: 0 0 80px rgba(255, 255, 255, 0.3);
 
+  @media (max-width: ${theme.breakpoints.lg}) {
+    font-size: clamp(32px, 5.5vw, 56px);
+  }
+
   @media (max-width: ${theme.breakpoints.md}) {
-    font-size: clamp(28px, 8vw, 56px);
-    line-height: 1.15;
+    font-size: clamp(28px, 7vw, 48px);
+    line-height: 1.2;
   }
   
   @media (max-width: ${theme.breakpoints.sm}) {
-    font-size: clamp(24px, 9vw, 40px);
+    font-size: clamp(24px, 8vw, 36px);
     margin-bottom: ${theme.spacing[3]};
+    line-height: 1.25;
   }
 `;
 
