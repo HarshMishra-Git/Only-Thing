@@ -179,25 +179,25 @@ const features = [
   {
     icon: '01',
     title: 'Science-Backed Innovation',
-    description: 'We combine biotechnology, clinical research, and data intelligence to create solutions that work at a cellular level. Every formulation is built on measurable science — not trends — ensuring real transformation for your body, skin, and mind.',
+    description: 'We combine biotechnology, clinical research, and data intelligence to create solutions that work at a cellular level. Every formulation is built on measurable science - not trends - ensuring real transformation for your body, skin, and mind.',
     highlight: 'Because wellness should be proven, not promised'
   },
   {
     icon: '02',
     title: 'Intelligent Personalisation',
-    description: 'No two bodies are the same — your health solutions shouldn't be either. Through intelligent systems and expert insights, we design personalised protocols and products that evolve with your biology, goals, and lifestyle.',
+    description: 'No two bodies are the same - your health solutions shouldn\'t be either. Through intelligent systems and expert insights, we design personalised protocols and products that evolve with your biology, goals, and lifestyle.',
     highlight: 'Wellness that adapts to you'
   },
   {
     icon: '03',
     title: 'Results, Not Rituals',
-    description: 'We believe in results you can see, feel, and measure. From your skin's glow to your gut balance, every outcome is tracked, analysed, and refined — ensuring every step you take moves you closer to your best self.',
+    description: 'We believe in results you can see, feel, and measure. From your skin\'s glow to your gut balance, every outcome is tracked, analysed, and refined - ensuring every step you take moves you closer to your best self.',
     highlight: 'Designed for impact, not empty routines'
   },
   {
     icon: '04',
     title: 'Conscious Luxury',
-    description: 'Luxury for us isn't excess — it's intelligence, intention, and impact. Our products and practices are crafted with clean science, sustainable ethics, and uncompromising quality to bring wellness that feels as good as it looks.',
+    description: 'Luxury for us isn\'t excess - it\'s intelligence, intention, and impact. Our products and practices are crafted with clean science, sustainable ethics, and uncompromising quality to bring wellness that feels as good as it looks.',
     highlight: 'Minimal. Modern. Meaningful'
   }
 ];
