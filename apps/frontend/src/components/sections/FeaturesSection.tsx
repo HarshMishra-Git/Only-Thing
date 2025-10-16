@@ -178,27 +178,27 @@ const FeatureHighlight = styled.div`
 const features = [
   {
     icon: '01',
-    title: 'Intelligent Formulation',
-    description: 'AI-powered ingredient combinations that adapt to your unique skin profile. Our proprietary algorithm analyzes 50+ biomarkers to create your perfect match.',
-    highlight: 'Personalized Science'
+    title: 'Science-Backed Innovation',
+    description: 'We combine biotechnology, clinical research, and data intelligence to create solutions that work at a cellular level. Every formulation is built on measurable science — not trends — ensuring real transformation for your body, skin, and mind.',
+    highlight: 'Because wellness should be proven, not promised'
   },
   {
     icon: '02',
-    title: 'Clinical Efficacy',
-    description: 'Every product undergoes rigorous clinical trials with measurable results. 95% efficacy rate backed by double-blind studies and peer-reviewed research.',
-    highlight: 'Proven Results'
+    title: 'Intelligent Personalisation',
+    description: 'No two bodies are the same — your health solutions shouldn't be either. Through intelligent systems and expert insights, we design personalised protocols and products that evolve with your biology, goals, and lifestyle.',
+    highlight: 'Wellness that adapts to you'
   },
   {
     icon: '03',
-    title: 'Advanced Delivery',
-    description: 'Liposomal encapsulation technology ensures active ingredients penetrate deeper. 5X more effective than conventional formulations.',
-    highlight: 'Enhanced Absorption'
+    title: 'Results, Not Rituals',
+    description: 'We believe in results you can see, feel, and measure. From your skin's glow to your gut balance, every outcome is tracked, analysed, and refined — ensuring every step you take moves you closer to your best self.',
+    highlight: 'Designed for impact, not empty routines'
   },
   {
     icon: '04',
-    title: 'Real-Time Tracking',
-    description: 'Monitor your skin transformation with our advanced analytics. Track hydration, elasticity, and cellular regeneration metrics daily.',
-    highlight: 'Data-Driven Insights'
+    title: 'Conscious Luxury',
+    description: 'Luxury for us isn't excess — it's intelligence, intention, and impact. Our products and practices are crafted with clean science, sustainable ethics, and uncompromising quality to bring wellness that feels as good as it looks.',
+    highlight: 'Minimal. Modern. Meaningful'
   }
 ];
 
@@ -217,8 +217,8 @@ export function FeaturesSection() {
             Science Meets<br />Luxury
           </Heading>
           <Description>
-            We combine cutting-edge biotechnology with clinical-grade ingredients
-            to deliver transformative skincare that actually works.
+            Wellness that's proven, not promised. We combine biotechnology, clinical research, 
+            and data intelligence to create solutions that work at a cellular level.
           </Description>
         </SectionHeader>
 
