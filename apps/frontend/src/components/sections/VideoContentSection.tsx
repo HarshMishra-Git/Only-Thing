@@ -7,36 +7,47 @@ import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 
 const SectionContainer = styled.section`
-  position: relative;
-  padding: ${theme.spacing[8]} ${theme.spacing[4]} ${theme.spacing[10]};
+  padding: ${theme.spacing[8]} ${theme.spacing[4]};
   background: ${theme.colors.white};
-  overflow: visible;
+  min-height: calc(100vh - 73px);
+  display: flex;
+  align-items: center;
 
   @media (max-width: ${theme.breakpoints.md}) {
     padding: ${theme.spacing[6]} ${theme.spacing[3]};
+    min-height: auto;
   }
 `;
 
 const MainContainer = styled.div`
-  max-width: 1300px;
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  position: relative;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: ${theme.spacing[8]};
+  align-items: center;
+  
+  @media (max-width: ${theme.breakpoints.lg}) {
+    grid-template-columns: 350px 1fr;
+    gap: ${theme.spacing[6]};
+  }
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+    gap: ${theme.spacing[6]};
+  }
 `;
 
-const CentralVideoWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  height: 350px;
+const VideoWrapper = styled.div`
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 
     0 0 0 4px ${theme.colors.white},
-    0 0 0 8px rgba(45, 95, 63, 0.2),
-    0 10px 40px rgba(0, 0, 0, 0.15);
-  z-index: 10;
+    0 0 0 8px ${theme.colors.primary},
+    0 20px 50px rgba(45, 95, 63, 0.2);
   background: ${theme.colors.white};
   
   video {
@@ -45,34 +56,17 @@ const CentralVideoWrapper = styled.div`
     object-fit: cover;
   }
   
-  @media (max-width: ${theme.breakpoints.lg}) {
-    width: 300px;
-    height: 300px;
-  }
-  
   @media (max-width: ${theme.breakpoints.md}) {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin: ${theme.spacing[6]} auto ${theme.spacing[8]};
-    width: 250px;
-    height: 250px;
+    max-width: 300px;
+    margin: 0 auto;
   }
 `;
 
-const FeatureCardsContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 650px;
-  margin: 0 auto;
-  
-  @media (max-width: ${theme.breakpoints.md}) {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: ${theme.spacing[4]};
-  }
+const CardsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing[3]};
+  max-width: 700px;
 `;
 
 const TextContent = styled.div`
@@ -174,57 +168,32 @@ const HeaderSection = styled.div`
   z-index: 5;
 `;
 
-// Position type union
-type FeaturePosition = 
-  | { top: string; left: string }
-  | { top: string; right: string };
-
 // Horizontal Feature Card Styles
-const FeatureCard = styled.div<{ position: FeaturePosition }>`
-  position: absolute;
-  top: ${props => props.position.top};
-  left: ${props => 'left' in props.position ? props.position.left : 'auto'};
-  right: ${props => 'right' in props.position ? props.position.right : 'auto'};
-  width: 320px;
+const FeatureCard = styled.div`
   background: ${theme.colors.white};
   border: 2px solid ${theme.colors.gray.light};
   border-radius: ${theme.radii.lg};
-  padding: ${theme.spacing[4]};
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: ${theme.spacing[3]};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all ${theme.transitions.duration.base} ${theme.transitions.easing.inOut};
-  z-index: 5;
   
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 24px rgba(45, 95, 63, 0.12);
+    transform: translateX(8px);
+    box-shadow: 0 4px 16px rgba(45, 95, 63, 0.12);
     border-color: ${theme.colors.primary};
-  }
-  
-  @media (max-width: ${theme.breakpoints.lg}) {
-    width: 280px;
-  }
-  
-  @media (max-width: ${theme.breakpoints.md}) {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
   }
 `;
 
 const FeatureHeader = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: ${theme.spacing[2]};
   margin-bottom: ${theme.spacing[2]};
 `;
 
 const FeatureIcon = styled.div`
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   background: ${theme.colors.primary};
   border-radius: 50%;
   display: flex;
@@ -233,8 +202,8 @@ const FeatureIcon = styled.div`
   flex-shrink: 0;
   
   svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     stroke: ${theme.colors.white};
     fill: none;
     stroke-width: 2;
@@ -243,27 +212,26 @@ const FeatureIcon = styled.div`
 
 const FeatureTitle = styled.h3`
   font-family: ${theme.typography.fonts.display};
-  font-size: ${theme.typography.sizes.lg};
+  font-size: ${theme.typography.sizes.base};
   font-weight: ${theme.typography.weights.bold};
   color: ${theme.colors.black};
   text-transform: uppercase;
   margin: 0;
-  line-height: 1.3;
-  flex: 1;
+  line-height: 1.2;
 `;
 
 const FeatureDescription = styled.p`
   font-size: ${theme.typography.sizes.sm};
-  line-height: 1.6;
+  line-height: 1.5;
   color: ${theme.colors.gray.dark};
-  margin: 0 0 ${theme.spacing[2]} 0;
+  margin: 0;
 `;
 
 const FeatureSubtext = styled.p`
   font-size: ${theme.typography.sizes.xs};
-  line-height: 1.4;
+  line-height: 1.3;
   color: ${theme.colors.primary};
-  margin: 0;
+  margin-top: ${theme.spacing[1]};
   font-weight: ${theme.typography.weights.medium};
   font-style: italic;
 `;
@@ -283,8 +251,7 @@ export function VideoContentSection() {
       ),
       title: 'Intelligent Skincare',
       description: 'Evolution of beauty where science, data, and biology create products that think, adapt, and deliver measurable results.',
-      subtext: 'It\'s not just skincare — it\'s skin intelligence.',
-      position: { top: '10%', left: '3%' }
+      subtext: 'It\'s not just skincare — it\'s skin intelligence.'
     },
     {
       icon: (
@@ -294,8 +261,7 @@ export function VideoContentSection() {
       ),
       title: 'Powered by Science',
       description: 'Real wellness doesn\'t guess — it proves. Every formula is backed by measurable science, not trends.',
-      subtext: 'Evidence-based wellness for measurable results.',
-      position: { top: '48%', left: '0%' }
+      subtext: 'Evidence-based wellness for measurable results.'
     },
     {
       icon: (
@@ -305,8 +271,7 @@ export function VideoContentSection() {
       ),
       title: 'Crafted for the Future',
       description: 'We design with tomorrow in mind — merging biotechnology, AI insights, and sustainable innovation.',
-      subtext: 'Every formula evolves with you and your environment.',
-      position: { top: '82%', left: '8%' }
+      subtext: 'Every formula evolves with you and your environment.'
     },
     {
       icon: (
@@ -316,8 +281,7 @@ export function VideoContentSection() {
       ),
       title: 'Backed by Agile Data',
       description: 'Your body changes — and your wellness should too. Our systems learn from your biology, habits, and environment.',
-      subtext: 'Adaptive wellness that evolves with you.',
-      position: { top: '10%', right: '3%' }
+      subtext: 'Adaptive wellness that evolves with you.'
     },
     {
       icon: (
@@ -327,94 +291,85 @@ export function VideoContentSection() {
       ),
       title: 'Assured Product Purity & Efficacy',
       description: 'Integrity is the foundation of intelligence. Every ingredient is clinically validated and scientifically tested.',
-      subtext: 'Uncompromising purity meets proven performance.',
-      position: { top: '82%', right: '8%' }
+      subtext: 'Uncompromising purity meets proven performance.'
     }
   ];
 
   return (
     <SectionContainer ref={ref}>
       <MainContainer>
-        <HeaderSection>
+        {/* Video on LEFT */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <VideoWrapper>
+            <video autoPlay loop muted playsInline>
+              <source src="/videos/v1.mp4" type="video/mp4" />
+            </video>
+          </VideoWrapper>
+        </motion.div>
+        
+        {/* Content on RIGHT */}
+        <div>
+          <HeaderSection>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Eyebrow>EXPERIENCE THE DIFFERENCE</Eyebrow>
+              <Heading>
+                INTELLIGENT<br />WELLNESS ECOSYSTEM
+              </Heading>
+              <TagLine>
+                We support the highest standards of Quality and Transparency.
+              </TagLine>
+            </motion.div>
+          </HeaderSection>
+          
+          {/* Stacked Cards */}
+          <CardsContainer>
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 30 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.4 + (index * 0.1)
+                }}
+              >
+                <FeatureCard>
+                  <FeatureHeader>
+                    <FeatureIcon>
+                      {feature.icon}
+                    </FeatureIcon>
+                    <FeatureTitle>{feature.title}</FeatureTitle>
+                  </FeatureHeader>
+                  <FeatureDescription>
+                    {feature.description}
+                  </FeatureDescription>
+                  <FeatureSubtext>
+                    {feature.subtext}
+                  </FeatureSubtext>
+                </FeatureCard>
+              </motion.div>
+            ))}
+          </CardsContainer>
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            style={{ marginTop: theme.spacing[6] }}
           >
-            <Eyebrow>EXPERIENCE THE DIFFERENCE</Eyebrow>
-            <Heading>
-              INTELLIGENT<br />WELLNESS ECOSYSTEM
-            </Heading>
-            <TagLine>
-              We support the highest standards of Quality and Transparency.
-            </TagLine>
+            <CTAButton href="/products">
+              Discover Your Formula
+            </CTAButton>
           </motion.div>
-        </HeaderSection>
-        
-        <FeatureCardsContainer>
-          {/* Central Video */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <CentralVideoWrapper>
-              <video autoPlay loop muted playsInline>
-                <source src="/videos/v1.mp4" type="video/mp4" />
-              </video>
-            </CentralVideoWrapper>
-          </motion.div>
-          
-          {/* Positioned Feature Cards */}
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ 
-                opacity: 0, 
-                x: 'left' in feature.position ? -50 : 50,
-                y: 20
-              }}
-              animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
-              transition={{ 
-                duration: 0.6, 
-                delay: 0.5 + (index * 0.1),
-                type: "spring",
-                stiffness: 100
-              }}
-            >
-              <FeatureCard position={feature.position}>
-                <FeatureHeader>
-                  <FeatureIcon>
-                    {feature.icon}
-                  </FeatureIcon>
-                  <FeatureTitle>{feature.title}</FeatureTitle>
-                </FeatureHeader>
-                <FeatureDescription>
-                  {feature.description}
-                </FeatureDescription>
-                <FeatureSubtext>
-                  {feature.subtext}
-                </FeatureSubtext>
-              </FeatureCard>
-            </motion.div>
-          ))}
-        </FeatureCardsContainer>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          style={{ 
-            textAlign: 'center', 
-            marginTop: theme.spacing[8],
-            position: 'relative',
-            zIndex: 15
-          }}
-        >
-          <CTAButton href="/products">
-            Discover Your Formula
-          </CTAButton>
-        </motion.div>
+        </div>
       </MainContainer>
     </SectionContainer>
   );

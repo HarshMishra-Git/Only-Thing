@@ -130,9 +130,13 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: ${theme.spacing[8]} ${theme.spacing[4]};
+  padding: ${theme.spacing[10]} ${theme.spacing[4]} ${theme.spacing[8]};
   max-width: 1400px;
   margin: 0 auto;
+  
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: ${theme.spacing[12]} ${theme.spacing[3]} ${theme.spacing[6]};
+  }
 `;
 
 // Glowing Badge
