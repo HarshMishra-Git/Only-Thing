@@ -178,12 +178,17 @@ const HeaderSection = styled.div`
   z-index: 5;
 `;
 
+// Position type union
+type FeaturePosition = 
+  | { top: string; left: string }
+  | { top: string; right: string };
+
 // Horizontal Feature Card Styles
-const FeatureCard = styled.div<{ position: { top: string; left: string; right?: string } }>`
+const FeatureCard = styled.div<{ position: FeaturePosition }>`
   position: absolute;
   top: ${props => props.position.top};
-  left: ${props => props.position.left};
-  right: ${props => props.position.right || 'auto'};
+  left: ${props => 'left' in props.position ? props.position.left : 'auto'};
+  right: ${props => 'right' in props.position ? props.position.right : 'auto'};
   width: 280px;
   background: ${theme.colors.white};
   border: 1px solid ${theme.colors.gray.light};
@@ -374,7 +379,7 @@ export function VideoContentSection() {
               key={index}
               initial={{ 
                 opacity: 0, 
-                x: feature.position.left ? -50 : 50,
+                x: 'left' in feature.position ? -50 : 50,
                 y: 20
               }}
               animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
